@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 import styled from '@emotion/styled';
 
-export const HomePageContainer = styled(Box)(({ theme }) => ({
+export const HomePageContainer = styled(Box)({
   width: '100%',
   height: '100%',
-}));
+});
