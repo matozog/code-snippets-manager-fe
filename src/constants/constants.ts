@@ -1,1 +1,1 @@
-export const app = "APP";
+export const app = 'APP';

@@ -1,5 +1,5 @@
 const SnippetDialog = () => {
-  return <div></div>;
+  return <div>Snippet dialog</div>;
 };
 
 export default SnippetDialog;

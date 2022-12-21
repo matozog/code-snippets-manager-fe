@@ -1,1 +1,1 @@
-export const getUrl = () => "url";
+export const getUrl = () => 'url';

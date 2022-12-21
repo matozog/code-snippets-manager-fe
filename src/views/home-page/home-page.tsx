@@ -1,5 +1,7 @@
+import { HomePageContainer } from './home-page.jss';
+
 const HomePage = () => {
-  return <div></div>;
+  return <HomePageContainer>Home page</HomePageContainer>;
 };
 
 export default HomePage;
