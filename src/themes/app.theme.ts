@@ -1,10 +1,10 @@
-import { createTheme } from '@mui/system';
+import { createTheme } from '@mui/material/styles';
 
 export const appTheme = createTheme({
   palette: {
     primary: {
       light: '#757ce8',
-      main: '#3f50b5',
+      main: '#201e20',
       dark: '#002884',
       contrastText: '#fff',
     },
@@ -14,6 +14,10 @@ export const appTheme = createTheme({
       dark: '#ba000d',
       contrastText: '#000',
     },
-    spacing: 8,
+    text: {
+      primary: '#fff',
+      secondary: '#000',
+    },
   },
+  spacing: 8,
 });
