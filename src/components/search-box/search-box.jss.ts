@@ -8,13 +8,14 @@ export const StyledSearchBox = styled(TextField)(({ theme }) => ({
     width: 'auto',
   },
   '& .MuiOutlinedInput-root': {
+    color: theme.palette.text.secondary,
     '&.Mui-focused fieldset': {
-      borderColor: theme.palette.text.primary,
+      borderColor: theme.palette.text.secondary,
       borderWidth: '1.5px',
     },
   },
   '& .MuiOutlinedInput-notchedOutline': {
-    borderColor: theme.palette.text.primary,
+    borderColor: theme.palette.text.secondary,
     borderWidth: '0.5px',
   },
   '& .MuiInputBase-input': {
@@ -26,5 +27,5 @@ export const StyledSearchBox = styled(TextField)(({ theme }) => ({
 }));
 
 export const StyledSearchIcon = styled(SearchIcon)(({ theme }) => ({
-  color: theme.palette.text.primary,
+  color: theme.palette.text.secondary,
 }));

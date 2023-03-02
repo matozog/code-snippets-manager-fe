@@ -15,8 +15,8 @@ export const appTheme = createTheme({
       contrastText: '#000',
     },
     text: {
-      primary: '#fff',
-      secondary: '#000',
+      primary: '#000',
+      secondary: '#fff',
     },
   },
   spacing: 8,
