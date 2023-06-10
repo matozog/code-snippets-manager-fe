@@ -1,7 +1,9 @@
 import { FC, useState } from 'react';
 
+import CustomDatepicker from 'src/components/datepicker/datepicker';
 import CustomDivider from 'src/components/custom-divider/custom-divider';
 import Dropdown from 'src/components/dropdown/dropdown';
+import MuiCheckbox from 'src/components/checkbox/checkbox';
 import MultiSelect from 'src/components/multi-select/multi-select';
 import RadiosGroup from 'src/components/radios-group/radios-group';
 import { SelectChangeEvent } from '@mui/material';
@@ -56,6 +58,9 @@ const SnippetsFilters: FC = () => {
         label="Added from"
       />
       <CustomDivider />
+      <CustomDatepicker label="Adder afer" />
+      <CustomDatepicker label="Adder before" />
+      <MuiCheckbox label="Favourite" />
     </SnippetsFiltersContainer>
   );
 };
