@@ -6,17 +6,18 @@ import { FC } from 'react';
 interface IDropdownProps {
   handleOnChange: (value: SelectChangeEvent<string>) => void;
   value: string;
+  label: string;
 }
 
-const Dropdown: FC<IDropdownProps> = ({ handleOnChange, value }) => {
+const Dropdown: FC<IDropdownProps> = ({ handleOnChange, value, label }) => {
   return (
     <DropdownFormContainer>
-      <StyledInputLabel id="demo-simple-select-helper-label">Age</StyledInputLabel>
+      <StyledInputLabel id="demo-simple-select-helper-label">{label}</StyledInputLabel>
       <Select
         labelId="demo-simple-select-helper-label"
         id="demo-simple-select-helper"
         value={value}
-        label="Age"
+        label={label}
         onChange={handleOnChange}
       >
         <MenuItem value="">

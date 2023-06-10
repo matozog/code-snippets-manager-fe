@@ -8,13 +8,14 @@ interface IMultiSelectProps {
   options: Array<string>;
   selectedOptions: Array<string>;
   onChange: (event: SelectChangeEvent<Array<string>>) => void;
+  label: string;
 }
 
-const MultiSelect: FC<IMultiSelectProps> = ({ onChange, selectedOptions, options }) => {
+const MultiSelect: FC<IMultiSelectProps> = ({ onChange, selectedOptions, options, label }) => {
   return (
     <MultiSelectFormContainer>
       <StyledInputLabel style={{ minWidth: 'max-content' }} id="demo-simple-select-helper-label">
-        Programming language
+        {label}
       </StyledInputLabel>
       <Select
         labelId="demo-multiple-checkbox-label"
@@ -22,7 +23,7 @@ const MultiSelect: FC<IMultiSelectProps> = ({ onChange, selectedOptions, options
         multiple
         value={selectedOptions}
         onChange={onChange}
-        input={<OutlinedInput label="Programming language" />}
+        input={<OutlinedInput label={label} />}
         renderValue={(selected) => selected.join(', ')}
       >
         {options.map((option) => (
