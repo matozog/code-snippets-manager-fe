@@ -1,16 +1,16 @@
-import { Checkbox } from '@mui/material';
-import { FC } from 'react';
-import { MuiCheckboxContainer } from './checkbox.jss';
+import { CheckboxLabel, MuiCheckboxComp, MuiCheckboxContainer } from './checkbox.jss';
 
-interface IMuiCheckbox {
+import { FC } from 'react';
+
+interface IMuiCheckboxProps {
   label: string;
 }
 
-const MuiCheckbox: FC<IMuiCheckbox> = ({ label }) => {
+const MuiCheckbox: FC<IMuiCheckboxProps> = ({ label }) => {
   return (
     <MuiCheckboxContainer>
-      <span>{label}</span>
-      <Checkbox />
+      <CheckboxLabel>{label}</CheckboxLabel>
+      <MuiCheckboxComp />
     </MuiCheckboxContainer>
   );
 };

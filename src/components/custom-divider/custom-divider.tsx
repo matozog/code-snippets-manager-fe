@@ -1,8 +1,12 @@
 import Divider from '@mui/material/Divider';
 import { FC } from 'react';
 
-const CustomDivider: FC = () => {
-  return <Divider />;
+interface ICustomDividerProps {
+  color?: string;
+}
+
+const CustomDivider: FC<ICustomDividerProps> = ({ color }) => {
+  return <Divider color={color} />;
 };
 
 export default CustomDivider;

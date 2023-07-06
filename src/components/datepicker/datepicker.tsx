@@ -6,7 +6,7 @@ interface IDatepicker {
 }
 
 const Datepicker: FC<IDatepicker> = ({ label }) => {
-  return <CustomDatepicker label={label} />;
+  return <CustomDatepicker label={label} format="DD/MM/YYYY" />;
 };
 
 export default Datepicker;

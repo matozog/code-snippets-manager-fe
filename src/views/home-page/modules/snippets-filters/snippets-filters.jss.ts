@@ -6,7 +6,7 @@ export const SnippetsFiltersContainer = styled(Box)(({ theme }) => ({
   flexDirection: 'column',
   width: `calc(100% - ${theme.spacing(8)})`,
   border: `1px solid ${theme.palette.primary.main}`,
-  borderRadius: '5px',
+  borderRadius: '6px',
   height: '25%',
   margin: theme.spacing(2),
   padding: theme.spacing(2),
