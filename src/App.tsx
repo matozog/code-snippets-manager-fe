@@ -1,25 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import AppRoutes from './app.routes';
+import { BrowserRouter } from 'react-router-dom';
+import HomePageHeader from './views/shared/header/home-page.header';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { Provider } from 'react-redux';
+import { ThemeProvider } from '@mui/material/styles';
+import { appTheme } from './themes/app.theme';
+import store from './store/config/store';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <ThemeProvider theme={appTheme}>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <HomePageHeader />
+          <BrowserRouter>
+            <AppRoutes />
+          </BrowserRouter>
+        </LocalizationProvider>
+      </ThemeProvider>
+    </Provider>
   );
 }
 

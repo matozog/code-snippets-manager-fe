@@ -1,0 +1,71 @@
+[
+  {
+    "id": "id_0",
+    "name": "Snippet 1",
+    "description": "Description 1",
+    "content": "Content 1",
+    "favorite": true,
+    "programmingLanguage": "Java",
+    "type": "function",
+    "addedFrom": "Home Lublin",
+    "addedDate": "2023-07-06",
+    "tags": [
+      {
+        "id": "id_tag_0",
+        "name": "tag name 0",
+        "addedDate": "2023-07-06"
+      },
+      {
+        "id": "id_tag_1",
+        "name": "tag name 1",
+        "addedDate": "2023-07-06"
+      }
+    ]
+  },
+  {
+    "id": "id_1",
+    "name": "Snippet 1",
+    "description": "Description 1",
+    "content": "Content 1",
+    "favorite": true,
+    "programmingLanguage": "Java",
+    "type": "function",
+    "addedFrom": "Home Lublin",
+    "addedDate": "2023-07-06",
+    "tags": [
+      {
+        "id": "id_tag_01",
+        "name": "tag name 01",
+        "addedDate": "2023-07-06"
+      },
+      {
+        "id": "id_tag_03",
+        "name": "tag name 03",
+        "addedDate": "2023-07-06"
+      }
+    ]
+  },
+  {
+    "id": "id_2",
+    "name": "Snippet 1",
+    "description": "Description 1",
+    "content": "Content 1",
+    "favorite": true,
+    "programmingLanguage": "Java",
+    "type": "function",
+    "addedFrom": "Home Lublin",
+    "addedDate": "2023-07-06",
+    "tags": [
+      {
+        "id": "id_tag_02",
+        "name": "tag name 02",
+        "addedDate": "2023-07-06"
+      },
+      {
+        "id": "id_tag_03",
+        "name": "tag name 03",
+        "addedDate": "2023-07-06"
+      }
+    ]
+  }
+]
