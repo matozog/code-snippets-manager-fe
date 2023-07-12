@@ -13,6 +13,6 @@ export const SnippetsFiltersContainer = styled(Box)(({ theme }) => ({
   gap: theme.spacing(2),
   [theme.breakpoints.up('md')]: {
     width: '25%',
-    height: '100%',
+    height: `calc(100% - ${theme.spacing(8)})`,
   },
 }));

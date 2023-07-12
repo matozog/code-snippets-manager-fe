@@ -8,4 +8,12 @@ export interface ICodeSnippet {
   type: string;
   addedFrom: string;
   addedDate: string;
+  tags: Array<ITag>;
+  img?: string;
+}
+
+export interface ITag {
+  id: string;
+  name: string;
+  addedDate: string;
 }

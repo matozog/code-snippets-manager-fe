@@ -10,6 +10,7 @@ export const HeaderContainer = styled(Box)(({ theme }) => ({
   alignItems: 'center',
   display: 'flex',
   color: '#fff',
+  height: '38px',
 }));
 
 export const AccountIconDetails = styled(PersonIcon)(({ theme }) => ({

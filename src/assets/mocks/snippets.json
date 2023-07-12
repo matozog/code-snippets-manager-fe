@@ -3,12 +3,13 @@
     "id": "id_0",
     "name": "Snippet 1",
     "description": "Description 1",
-    "content": "Content 1",
+    "content": "Content 1 Content 1 Content 1Content 1 Content 1 Content 1Content 1 Content 1 Content 1Content 1 Content 1 Content 1Content 1 Content 1 Content 1Content 1 Content 1 Content 1Content 1 Content 1 Content 1Content 1 Content 1 Content 1Content 1 Content 1 Content 1Content 1 Content 1 Content 1 Content 1 Content 1 Content 1Content 1 Content 1 Content 1Content 1 Content 1 Content 1Content 1 Content 1 Content 1Content 1 Content 1 Content 1Content 1 Content 1 Content 1Content 1 Content 1 Content 1Content 1 Content 1 Content 1Content 1 Content 1 Content 1Content 1 Content 1 Content 1",
     "favorite": true,
     "programmingLanguage": "Java",
     "type": "function",
     "addedFrom": "Home Lublin",
     "addedDate": "2023-07-06",
+    "img": "https://picsum.photos/200/300",
     "tags": [
       {
         "id": "id_tag_0",
@@ -19,12 +20,17 @@
         "id": "id_tag_1",
         "name": "tag name 1",
         "addedDate": "2023-07-06"
+      },
+      {
+        "id": "id_tag_2",
+        "name": "tag name 2",
+        "addedDate": "2023-07-09"
       }
     ]
   },
   {
     "id": "id_1",
-    "name": "Snippet 1",
+    "name": "Snippet 2",
     "description": "Description 1",
     "content": "Content 1",
     "favorite": true,
@@ -32,6 +38,7 @@
     "type": "function",
     "addedFrom": "Home Lublin",
     "addedDate": "2023-07-06",
+    "img": "https://picsum.photos/200/300",
     "tags": [
       {
         "id": "id_tag_01",
@@ -47,7 +54,53 @@
   },
   {
     "id": "id_2",
-    "name": "Snippet 1",
+    "name": "Snippet 3",
+    "description": "Description 1",
+    "content": "Content 1",
+    "favorite": true,
+    "programmingLanguage": "Java",
+    "type": "function",
+    "addedFrom": "Home Lublin",
+    "addedDate": "2023-07-06",
+    "tags": [
+      {
+        "id": "id_tag_02",
+        "name": "tag name 02",
+        "addedDate": "2023-07-06"
+      },
+      {
+        "id": "id_tag_03",
+        "name": "tag name 03",
+        "addedDate": "2023-07-06"
+      }
+    ]
+  },
+  {
+    "id": "id_3",
+    "name": "Snippet 4",
+    "description": "Description 1",
+    "content": "Content 1",
+    "favorite": true,
+    "programmingLanguage": "Java",
+    "type": "function",
+    "addedFrom": "Home Lublin",
+    "addedDate": "2023-07-06",
+    "tags": [
+      {
+        "id": "id_tag_02",
+        "name": "tag name 02",
+        "addedDate": "2023-07-06"
+      },
+      {
+        "id": "id_tag_03",
+        "name": "tag name 03",
+        "addedDate": "2023-07-06"
+      }
+    ]
+  },
+  {
+    "id": "id_5",
+    "name": "Snippet 5",
     "description": "Description 1",
     "content": "Content 1",
     "favorite": true,

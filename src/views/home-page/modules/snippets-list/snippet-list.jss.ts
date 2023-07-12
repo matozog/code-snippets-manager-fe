@@ -8,9 +8,11 @@ export const SnippetsListContainer = styled(Box)(({ theme }) => ({
   width: `calc(100% - ${theme.spacing(4)})`,
   height: '75%',
   borderRadius: '5px',
-  margin: theme.spacing(2),
+  padding: `0 ${theme.spacing(2)} 0 ${theme.spacing(2)}`,
+  margin: `${theme.spacing(2)} 0 ${theme.spacing(2)} 0`,
+  overflowY: 'auto',
   [theme.breakpoints.up('md')]: {
     width: '75%',
-    height: '100%',
+    height: `calc(100% - ${theme.spacing(4)})`,
   },
 }));
