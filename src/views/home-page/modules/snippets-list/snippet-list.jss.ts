@@ -6,13 +6,12 @@ export const SnippetsListContainer = styled(Box)(({ theme }) => ({
   flexDirection: 'column',
   gap: theme.spacing(3),
   width: `calc(100% - ${theme.spacing(4)})`,
-  height: '75%',
   borderRadius: '5px',
   padding: `0 ${theme.spacing(2)} 0 ${theme.spacing(2)}`,
   margin: `${theme.spacing(2)} 0 ${theme.spacing(2)} 0`,
-  overflowY: 'auto',
   [theme.breakpoints.up('md')]: {
     width: '75%',
     height: `calc(100% - ${theme.spacing(4)})`,
+    overflowY: 'auto',
   },
 }));

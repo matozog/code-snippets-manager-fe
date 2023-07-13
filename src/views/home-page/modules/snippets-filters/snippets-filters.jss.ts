@@ -7,12 +7,15 @@ export const SnippetsFiltersContainer = styled(Box)(({ theme }) => ({
   width: `calc(100% - ${theme.spacing(8)})`,
   border: `1px solid ${theme.palette.primary.main}`,
   borderRadius: '6px',
-  height: '25%',
   margin: theme.spacing(2),
   padding: theme.spacing(2),
   gap: theme.spacing(2),
   [theme.breakpoints.up('md')]: {
     width: '25%',
-    height: `calc(100% - ${theme.spacing(8)})`,
+    maxHeight: `calc(100% - ${theme.spacing(8)})`,
+    marginBottom: 'auto',
   },
+  // [theme.breakpoints.up('sm')]: {
+  //   height: '25%',
+  // },
 }));

@@ -1,4 +1,3 @@
-import { Box, Stack } from '@mui/material';
 import { FC, MutableRefObject, useRef } from 'react';
 import {
   SnippetCardContainer,
@@ -8,14 +7,15 @@ import {
   SnippetImageContainer,
   SnippetInfoContainer,
   SnippetTitle,
+  TagsChipContainer,
   TagsContainer,
 } from './snippet-card.jss';
 
+import { Box } from '@mui/material';
 import CustomDivider from '../custom-divider/custom-divider';
 import { ICodeSnippet } from 'src/types/models';
 import MuiChip from '../chip/chip';
 import ReadMoreButton from '../buttons/read-more/read-more';
-import TooltipInfo from '../tooltip/tooltip-info/tooltip-info';
 import { useIsOverflow } from 'src/hooks/useOverflow';
 
 interface ISnippetCardProps {
@@ -59,12 +59,12 @@ const SnippetCard: FC<ISnippetCardProps> = ({ codeSnippet }) => {
       </SnippetInfoContainer>
       <CustomDivider />
       <TagsContainer ref={tagsRef}>
-        <Stack direction="row" spacing={1} width={isOverflowTags ? '60%' : '100%'}>
+        <TagsChipContainer isOverflow={isOverflowTags}>
           {codeSnippet.tags.map((tag) => (
             <MuiChip key={tag.name} name={`# ${tag.name}`} />
           ))}
-        </Stack>
-        {isOverflowTags && <TooltipInfo />}
+        </TagsChipContainer>
+        {/* {isOverflowTags && <TooltipInfo />} */}
       </TagsContainer>
     </SnippetCardContainer>
   );

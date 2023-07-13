@@ -9,4 +9,8 @@ export const HomePageContainer = styled(Box)(({ theme }) => ({
   [theme.breakpoints.up('md')]: {
     flexDirection: 'row',
   },
+  [theme.breakpoints.down('md')]: {
+    overflowY: 'auto',
+    overflowX: 'hidden',
+  },
 }));

@@ -18,6 +18,9 @@ export const useIsOverflow = <T extends HTMLElement>(
     };
 
     if (current) {
+      if ('ResizeObserver' in window) {
+        new ResizeObserver(trigger).observe(current);
+      }
       trigger();
     }
   }, [ref]);

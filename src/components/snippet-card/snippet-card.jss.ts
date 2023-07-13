@@ -62,3 +62,12 @@ export const SnippetContentOverflow = styled(Box)(() => ({
   justifyContent: 'center',
   background: 'linear-gradient(transparent 20%,#FFF 75%)',
 }));
+
+export const TagsChipContainer = styled(Box, {
+  shouldForwardProp: (prop) => prop !== 'isOverflow',
+})<{ isOverflow?: boolean }>(({ theme, isOverflow }) => ({
+  display: 'flex',
+  gap: theme.spacing(1),
+  width: isOverflow ? '80%' : '100%',
+  overflowX: 'auto',
+}));
