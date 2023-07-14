@@ -12,13 +12,13 @@ import { SelectChangeEvent } from '@mui/material';
 import { SnippetsFiltersContainer } from './snippets-filters.jss';
 
 const SnippetsFilters: FC = () => {
-  const [sortBy] = useState('10');
+  const [sortBy] = useState('programmingLanguage');
   const [selectedProgrammingLanguages, setSelectedProgrammingLanguages] = useState<string[]>([]);
   const [selectedSnippetType, setSelectedSnippetType] = useState<string[]>([]);
   const [selectedSnippetLocalization, setSelectedSnippetLocalization] = useState<string[]>([]);
 
   const filtersData = useAppSelector((root: IRootState) => root.snippetsFilters.filtersData);
-  const { creationPlaces, programmingLanguages, types } = filtersData;
+  const { creationPlaces, programmingLanguages, types, sortByOptions } = filtersData;
 
   const handleOnChangeSortByDropdown = () => {
     undefined;
@@ -41,7 +41,12 @@ const SnippetsFilters: FC = () => {
 
   return (
     <SnippetsFiltersContainer>
-      <Dropdown label="Sort by:" handleOnChange={handleOnChangeSortByDropdown} value={sortBy} />
+      <Dropdown
+        label="Sort by:"
+        dropdownOptions={sortByOptions}
+        handleOnChange={handleOnChangeSortByDropdown}
+        value={sortBy}
+      />
       <RadiosGroup radiosTitle="Sorting type:" />
       <CustomDivider />
       <MultiSelect
