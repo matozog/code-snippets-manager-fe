@@ -1,8 +1,11 @@
+import { IRootState, useAppSelector } from 'src/store/config/store';
+
 import SnippetCard from 'src/components/snippet-card/snippet-card';
 import { SnippetsListContainer } from './snippet-list.jss';
-import snippetsList from 'src/assets/mocks/snippets.json';
 
 const SnippetsList = () => {
+  const snippetsList = useAppSelector((root: IRootState) => root.snippetsData.snippets);
+
   return (
     <SnippetsListContainer>
       {snippetsList.map((codeSnippet) => (

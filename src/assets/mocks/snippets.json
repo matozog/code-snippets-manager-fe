@@ -1,69 +1,122 @@
 [
   {
     "id": "id_0",
-    "name": "Snippet 1",
-    "description": "Description 1",
-    "content": "Content 1",
+    "name": "Error handler class",
+    "description": "Very nice description",
+    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur posuere libero non congue vestibulum. Integer mollis lorem id orci efficitur, at vestibulum turpis congue. Duis id vestibulum dui, non elementum metus. Sed rutrum urna quis nibh consequat, vitae efficitur est maximus. Maecenas quis dignissim urna, sit amet vehicula velit. Curabitur consequat laoreet justo, pellentesque condimentum nisl feugiat nec. Ut gravida purus sem, pulvinar vestibulum tortor venenatis in. Maecenas cursus, turpis ut interdum molestie, metus mauris porttitor quam, et ultrices turpis diam vitae ligula. Quisque nec elit id nunc posuere imperdiet eu a metus. Etiam ut vulputate diam, ut hendrerit orci. In hac habitasse platea dictumst. Fusce nulla risus, tempor non pharetra ut, tempor ac risus. Vivamus sapien sem, commodo vitae volutpat et, tincidunt quis lectus. Donec at ultrices risus. Donec lobortis rhoncus hendrerit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.",
     "favorite": true,
     "programmingLanguage": "Java",
-    "type": "function",
-    "addedFrom": "Home Lublin",
+    "type": "class",
+    "addedFrom": "Home in Lublin",
     "addedDate": "2023-07-06",
+    "img": "https://picsum.photos/200/300",
     "tags": [
       {
         "id": "id_tag_0",
-        "name": "tag name 0",
+        "name": "Java",
         "addedDate": "2023-07-06"
       },
       {
         "id": "id_tag_1",
-        "name": "tag name 1",
+        "name": "Class",
         "addedDate": "2023-07-06"
+      },
+      {
+        "id": "id_tag_2",
+        "name": "Utils",
+        "addedDate": "2023-07-09"
       }
     ]
   },
   {
     "id": "id_1",
-    "name": "Snippet 1",
-    "description": "Description 1",
-    "content": "Content 1",
-    "favorite": true,
-    "programmingLanguage": "Java",
+    "name": "Scale images",
+    "description": "Nice tool",
+    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu tortor quis risus mattis condimentum. Praesent et consectetur magna. Aenean nulla mi, iaculis et iaculis molestie, aliquam sed massa. Nulla ac eros venenatis, imperdiet diam ac, malesuada magna. Nam facilisis libero arcu, id maximus justo blandit nec. Pellentesque in dapibus purus.",
+    "favorite": false,
+    "programmingLanguage": "Python",
     "type": "function",
-    "addedFrom": "Home Lublin",
-    "addedDate": "2023-07-06",
+    "addedFrom": "Work",
+    "addedDate": "2023-02-06",
+    "img": "https://picsum.photos/200/300",
     "tags": [
       {
         "id": "id_tag_01",
-        "name": "tag name 01",
-        "addedDate": "2023-07-06"
+        "name": "Python",
+        "addedDate": "2023-04-06"
       },
       {
         "id": "id_tag_03",
-        "name": "tag name 03",
-        "addedDate": "2023-07-06"
+        "name": "Function",
+        "addedDate": "2023-05-06"
       }
     ]
   },
   {
     "id": "id_2",
-    "name": "Snippet 1",
-    "description": "Description 1",
-    "content": "Content 1",
+    "name": "Fibonacci function",
+    "description": "The best way to create fibonacci sequence",
+    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu tortor quis risus mattis condimentum. Praesent et consectetur magna. Aenean nulla mi, iaculis et iaculis molestie, aliquam sed massa. Nulla ac eros venenatis, imperdiet diam ac, malesuada magna. Nam facilisis libero arcu, id maximus justo blandit nec. Pellentesque in dapibus purus. Curabitur et imperdiet mauris. Sed id efficitur erat, nec varius orci. Duis eros nisi, condimentum ac accumsan ac, condimentum ac elit. Aliquam suscipit pellentesque nulla, et gravida sem sollicitudin vel. Maecenas sed pretium neque. Cras ex neque, rutrum a purus a, vestibulum ultricies tellus. Vivamus iaculis velit ipsum, eu porttitor erat rutrum vel. Praesent luctus ullamcorper risus, ut efficitur nunc rhoncus quis. Proin sit amet nunc ac sem iaculis viverra non vel est. Fusce sodales vehicula purus luctus venenatis. Sed lacinia pulvinar tellus, at scelerisque purus eleifend quis. Sed fermentum nibh risus, non tempor nulla lacinia bibendum. In commodo mauris venenatis odio malesuada tempus. Pellentesque faucibus volutpat dolor. Sed eget nunc ipsum. Praesent et diam at sapien efficitur hendrerit non et orci. Integer tristique elementum nisi, sit amet mollis velit dapibus vel. Nulla nec fringilla leo. Curabitur id tristique urna. Nulla quis suscipit magna. Nunc id tellus in justo tincidunt auctor id nec eros. Etiam vehicula erat vitae dui lacinia, nec vehicula erat finibus. Vestibulum ultrices magna et porta convallis. Cras sit amet molestie eros, sit amet imperdiet neque. Phasellus eleifend faucibus velit ac tincidunt. Vestibulum faucibus risus nulla, in posuere ipsum viverra sed. Nam nec tortor eget neque tempus aliquam.",
     "favorite": true,
-    "programmingLanguage": "Java",
+    "programmingLanguage": "Javascript",
     "type": "function",
-    "addedFrom": "Home Lublin",
-    "addedDate": "2023-07-06",
+    "addedFrom": "PKP station",
+    "addedDate": "2022-07-06",
     "tags": [
       {
         "id": "id_tag_02",
-        "name": "tag name 02",
+        "name": "Javascript",
         "addedDate": "2023-07-06"
       },
       {
         "id": "id_tag_03",
-        "name": "tag name 03",
+        "name": "Recursion",
+        "addedDate": "2023-07-06"
+      }
+    ]
+  },
+  {
+    "id": "id_3",
+    "name": "C++ template",
+    "description": "Template description",
+    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu tortor quis risus mattis condimentum. Praesent et consectetur magna. Aenean nulla mi, iaculis et iaculis molestie, aliquam sed massa.",
+    "favorite": false,
+    "programmingLanguage": "C++",
+    "type": "function",
+    "addedFrom": "Home in Lublin",
+    "addedDate": "2023-06-22",
+    "tags": [
+      {
+        "id": "id_tag_02",
+        "name": "C++",
+        "addedDate": "2023-07-06"
+      },
+      {
+        "id": "id_tag_03",
+        "name": "Template",
+        "addedDate": "2023-07-06"
+      }
+    ]
+  },
+  {
+    "id": "id_5",
+    "name": "Select the highest salary from employee array",
+    "description": "The best paid employee",
+    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu tortor quis risus mattis condimentum. Praesent et consectetur magna. Aenean nulla mi, iaculis et iaculis molestie, aliquam sed massa.",
+    "favorite": true,
+    "programmingLanguage": "Typescript",
+    "type": "function",
+    "addedFrom": "Home",
+    "addedDate": "2023-07-06",
+    "tags": [
+      {
+        "id": "id_tag_02",
+        "name": "Typescript",
+        "addedDate": "2023-07-06"
+      },
+      {
+        "id": "id_tag_03",
+        "name": "Selector",
         "addedDate": "2023-07-06"
       }
     ]
