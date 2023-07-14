@@ -1,4 +1,5 @@
 import { FC, useState } from 'react';
+import { IRootState, useAppSelector } from 'src/store/config/store';
 
 import CustomDatepicker from 'src/components/datepicker/datepicker';
 import CustomDivider from 'src/components/custom-divider/custom-divider';
@@ -15,6 +16,9 @@ const SnippetsFilters: FC = () => {
   const [selectedProgrammingLanguages, setSelectedProgrammingLanguages] = useState<string[]>([]);
   const [selectedSnippetType, setSelectedSnippetType] = useState<string[]>([]);
   const [selectedSnippetLocalization, setSelectedSnippetLocalization] = useState<string[]>([]);
+
+  const filtersData = useAppSelector((root: IRootState) => root.snippetsFilters.filtersData);
+  const { creationPlaces, programmingLanguages, types } = filtersData;
 
   const handleOnChangeSortByDropdown = () => {
     undefined;
@@ -43,19 +47,19 @@ const SnippetsFilters: FC = () => {
       <MultiSelect
         selectedOptions={selectedProgrammingLanguages}
         onChange={handleOnChangeProgrammingLanguage}
-        options={['value', 'value1', 'value2']}
+        options={programmingLanguages}
         label="Programming language"
       />
       <MultiSelect
         selectedOptions={selectedSnippetType}
         onChange={handleOnChangeSnippetType}
-        options={['value', 'value1', 'value2']}
+        options={types}
         label="Type"
       />
       <MultiSelect
         selectedOptions={selectedSnippetLocalization}
         onChange={handleOnChangeSnippetLocalization}
-        options={['value', 'value1', 'value2']}
+        options={creationPlaces}
         label="Added from"
       />
       <CustomDivider />

@@ -1,3 +1,5 @@
+import * as filtersDuck from './../filters';
+
 import { FAILURE, REQUEST, SUCCESS } from 'src/store/config/constants';
 import { HTTPService, requestAxios } from 'src/store/services/http.service';
 
@@ -25,6 +27,7 @@ const fetchSnippetsData = () => {
             data: res.data,
           },
         });
+        dispatch(filtersDuck.operations.updateFiltersData(res.data));
       })
       .catch((error) => {
         dispatch({
