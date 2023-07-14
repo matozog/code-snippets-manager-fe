@@ -1,7 +1,7 @@
 {
   "name": "my-app",
   "version": "0.1.0",
-  "homepage": "https://matozog.github.io/code-snippets-manager-fe",
+  "homepage": "https://matozog.github.io/code-snippets-manager-fe/",
   "private": true,
   "dependencies": {
     "@babel/eslint-parser": "^7.22.5",
