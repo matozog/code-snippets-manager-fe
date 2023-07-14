@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/code-snippets-manager-fe/static/css/main.8fa95cff.css",
-    "main.js": "/code-snippets-manager-fe/static/js/main.a12058ea.js",
+    "main.js": "/code-snippets-manager-fe/static/js/main.43f6ea38.js",
     "static/js/496.216cd1be.chunk.js": "/code-snippets-manager-fe/static/js/496.216cd1be.chunk.js",
     "static/media/axios.cjs": "/code-snippets-manager-fe/static/media/axios.e7d77f0967a69d31d7fc.cjs",
     "index.html": "/code-snippets-manager-fe/index.html",
     "main.8fa95cff.css.map": "/code-snippets-manager-fe/static/css/main.8fa95cff.css.map",
-    "main.a12058ea.js.map": "/code-snippets-manager-fe/static/js/main.a12058ea.js.map",
+    "main.43f6ea38.js.map": "/code-snippets-manager-fe/static/js/main.43f6ea38.js.map",
     "496.216cd1be.chunk.js.map": "/code-snippets-manager-fe/static/js/496.216cd1be.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.8fa95cff.css",
-    "static/js/main.a12058ea.js"
+    "static/js/main.43f6ea38.js"
   ]
 }
