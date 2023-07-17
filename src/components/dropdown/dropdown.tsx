@@ -7,7 +7,7 @@ interface IDropdownProps {
   handleOnChange: (value: SelectChangeEvent<string>) => void;
   value: string;
   label: string;
-  dropdownOptions: Array<string>;
+  dropdownOptions: Map<string, string>;
 }
 
 const Dropdown: FC<IDropdownProps> = ({ handleOnChange, value, label, dropdownOptions = [] }) => {
@@ -24,9 +24,9 @@ const Dropdown: FC<IDropdownProps> = ({ handleOnChange, value, label, dropdownOp
         <MenuItem value="">
           <em>None</em>
         </MenuItem>
-        {dropdownOptions?.map((option) => (
-          <MenuItem key={option} value={option}>
-            {option}
+        {Array.from(dropdownOptions).map(([key, value]) => (
+          <MenuItem key={key} value={key}>
+            {value}
           </MenuItem>
         ))}
       </Select>

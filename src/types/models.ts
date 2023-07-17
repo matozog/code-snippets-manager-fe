@@ -3,7 +3,7 @@ export interface ICodeSnippet {
   name: string;
   description: string;
   content: string;
-  favorite: boolean;
+  isFavourite: boolean;
   programmingLanguage: string;
   type: string;
   addedFrom: string;

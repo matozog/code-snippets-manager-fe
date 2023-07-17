@@ -1,9 +1,8 @@
-import { ActionType, FAILURE, REQUEST, SUCCESS } from 'src/store/config/constants';
-
+import { ActionType } from 'src/store/config/constants';
 import types from './types';
 
 export interface IFiltersData {
-  sortByOptions: Array<string>;
+  sortByOptions: Map<string, string>;
   programmingLanguages: Array<string>;
   types: Array<string>;
   creationPlaces: Array<string>;
@@ -13,43 +12,33 @@ const initialState = {
   sortBy: '',
   sortAsc: false,
   filtersData: {} as IFiltersData,
-  programmingLanguage: '',
-  type: '',
-  creationPlace: '',
-  addedBefore: '',
-  addedAfter: '',
+  programmingLanguage: [],
+  type: [],
+  creationPlace: [],
+  addedBefore: null,
+  addedAfter: null,
   favourite: false,
   isLoading: false,
 };
 
-export type IAppliancesState = Readonly<typeof initialState>;
+export type IFiltersState = Readonly<typeof initialState>;
 
 export default (
-  state: IAppliancesState = initialState,
-  action: ActionType<string, Record<string, unknown>, Record<string, unknown>, unknown>
-): IAppliancesState => {
-  const { type, payload, meta } = action;
+  state: IFiltersState = initialState,
+  action: ActionType<string, Record<string, unknown>, any, unknown>
+): IFiltersState => {
+  const { type, meta } = action;
 
   switch (type) {
     case types.UPDATE_FILTERS_DATA:
-      console.log(meta?.data);
       return { ...state, filtersData: meta?.data as IFiltersData };
-    case REQUEST(types.CHANGE_SORT_BY):
+    case types.CHANGE_FILTERS_FIELD: {
+      const { fieldKey, value } = meta?.data || {};
       return {
         ...state,
-        isLoading: true,
+        [fieldKey]: value,
       };
-    case SUCCESS(types.CHANGE_SORT_BY):
-      return {
-        ...state,
-        sortBy: payload?.data as string,
-        isLoading: false,
-      };
-    case FAILURE(types.CHANGE_SORT_BY):
-      return {
-        ...state,
-        isLoading: false,
-      };
+    }
     default:
       return state;
   }

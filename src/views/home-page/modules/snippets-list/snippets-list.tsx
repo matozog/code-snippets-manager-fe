@@ -1,10 +1,14 @@
+import * as snippetDuck from 'src/store/reducers/snippets';
+
 import { IRootState, useAppSelector } from 'src/store/config/store';
 
 import SnippetCard from 'src/components/snippet-card/snippet-card';
 import { SnippetsListContainer } from './snippet-list.jss';
 
 const SnippetsList = () => {
-  const snippetsList = useAppSelector((root: IRootState) => root.snippetsData.snippets);
+  const snippetsList = useAppSelector((root: IRootState) =>
+    snippetDuck.selectors.selectSortedAndFilteredSnippets({ ...root.snippetsData, ...root.snippetsFilters })
+  );
 
   return (
     <SnippetsListContainer>
