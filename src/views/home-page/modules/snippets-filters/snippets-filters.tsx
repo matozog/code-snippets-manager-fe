@@ -65,6 +65,8 @@ const SnippetsFilters: FC = () => {
   const handleOnChangeAddedAfterDate = (newValue: Dayjs | null) =>
     dispatch(filtersDuck.operations.changeCalendarFilterField('addedAfter', newValue));
 
+  const handleOnClearFiltersAction = () => dispatch(filtersDuck.operations.clearFilters());
+
   return (
     <SnippetsFiltersContainer>
       <Dropdown
@@ -112,7 +114,7 @@ const SnippetsFilters: FC = () => {
         minDate={addedAfter}
       />
       <MuiCheckbox label="Favourite" value={favourite} onChange={handleOnChangeFavouriteControl} />
-      <MuiButton text="Clear filters" variant="contained" />
+      <MuiButton text="Clear filters" variant="contained" onClick={handleOnClearFiltersAction} />
     </SnippetsFiltersContainer>
   );
 };

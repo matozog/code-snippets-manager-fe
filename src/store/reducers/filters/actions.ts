@@ -30,4 +30,8 @@ const changeCalendarFilterField = (fieldKey: string, value: Dayjs | null) => ({
   },
 });
 
-export { changeFiltersField, updateFiltersData, changeCalendarFilterField };
+const clearFilters = () => ({
+  type: types.CLEAR_FILTERS,
+});
+
+export { changeFiltersField, updateFiltersData, changeCalendarFilterField, clearFilters };

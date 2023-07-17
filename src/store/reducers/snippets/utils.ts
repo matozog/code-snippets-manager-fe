@@ -1,6 +1,7 @@
 import dayjs, { Dayjs } from 'dayjs';
 
 import { ICodeSnippet } from 'src/types/models';
+import { SortByType } from '../filters/constants';
 import isBetween from 'dayjs/plugin/isBetween';
 
 dayjs.extend(isBetween);
@@ -31,3 +32,27 @@ export const filterSnippets = (
       (favourite ? isFavourite : true)
     );
   });
+
+const comparatorFunc = (
+  firstElement: string | boolean | null,
+  secondElement: string | boolean | null,
+  sortAsc: boolean
+): number => {
+  if (firstElement === null || secondElement === null) return -1;
+
+  if (typeof firstElement === 'string' && typeof secondElement === 'string') {
+    return sortAsc ? firstElement.localeCompare(secondElement) : secondElement.localeCompare(firstElement);
+  } else if (typeof firstElement === 'boolean')
+    return sortAsc ? Number(secondElement) - Number(firstElement) : Number(firstElement) - Number(secondElement);
+
+  return 0;
+};
+
+export const sortRecords = (
+  snippets: Array<ICodeSnippet>,
+  sortBy: SortByType,
+  sortAsc: boolean
+): Array<ICodeSnippet> => {
+  if (sortBy === '') return snippets;
+  return [...snippets.sort((a: ICodeSnippet, b: ICodeSnippet) => comparatorFunc(a[sortBy], b[sortBy], sortAsc))];
+};

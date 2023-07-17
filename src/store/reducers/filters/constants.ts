@@ -1,7 +1,9 @@
-export const SORT_BY_OPTIONS: Map<string, string> = new Map([
+export type SortByType = 'name' | 'programmingLanguage' | 'isFavourite' | 'type' | 'addedFrom' | 'addedDate' | '';
+
+export const SORT_BY_OPTIONS: Map<SortByType, string> = new Map([
   ['name', 'Name'],
   ['programmingLanguage', 'Programming language'],
-  ['favourite', 'Favourite'],
+  ['isFavourite', 'Favourite'],
   ['type', 'Type'],
   ['addedFrom', 'Added from'],
   ['addedDate', 'Added date'],

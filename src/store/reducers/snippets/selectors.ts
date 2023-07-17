@@ -1,9 +1,11 @@
+import { filterSnippets, sortRecords } from './utils';
+
 import { Dayjs } from 'dayjs';
 import { ICodeSnippet } from 'src/types/models';
 import { IFiltersState } from '../filters/reducer';
 import { ISnippetsState } from './reducer';
+import { SortByType } from '../filters/constants';
 import { createSelector } from '@reduxjs/toolkit';
-import { filterSnippets } from './utils';
 
 const getCodeSnippets = (state: ISnippetsState) => state.snippets;
 const getProgrammingLanguages = (snippetsFilters: IFiltersState) => snippetsFilters.programmingLanguage;
@@ -12,6 +14,8 @@ const getCreationPlaces = (snippetsFilters: IFiltersState) => snippetsFilters.cr
 const getAddedBefore = (snippetsFilters: IFiltersState) => snippetsFilters.addedBefore;
 const getAddedAfter = (snippetsFilters: IFiltersState) => snippetsFilters.addedAfter;
 const getFavourite = (snippetsFilters: IFiltersState) => snippetsFilters.favourite;
+const getSortBy = (snippetsFilters: IFiltersState) => snippetsFilters.sortBy;
+const getSortAsc = (snippetsFilters: IFiltersState) => snippetsFilters.sortAsc;
 
 const selectFilteredSnippets = createSelector(
   [getCodeSnippets, getProgrammingLanguages, getTypes, getCreationPlaces, getAddedAfter, getAddedBefore, getFavourite],
@@ -28,8 +32,9 @@ const selectFilteredSnippets = createSelector(
 );
 
 const selectSortedAndFilteredSnippets = createSelector(
-  [selectFilteredSnippets],
-  (filteredSnippets: Array<ICodeSnippet>): Array<ICodeSnippet> => filteredSnippets
+  [selectFilteredSnippets, getSortBy, getSortAsc],
+  (filteredSnippets: Array<ICodeSnippet>, sortBy: SortByType, sortAsc: boolean): Array<ICodeSnippet> =>
+    sortRecords(filteredSnippets, sortBy, sortAsc)
 );
 
 export { selectSortedAndFilteredSnippets };
