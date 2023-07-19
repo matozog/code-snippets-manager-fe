@@ -6,7 +6,7 @@ import {
   FilterIcon,
   SnippetsFiltersContainer,
 } from './snippets-filters.jss';
-import { FC, useMemo, useRef, useState } from 'react';
+import { FC, MutableRefObject, useMemo, useRef, useState } from 'react';
 import { IRootState, useAppDispatch, useAppSelector } from 'src/store/config/store';
 import { SelectChangeEvent, useMediaQuery, useTheme } from '@mui/material';
 
@@ -19,8 +19,13 @@ import MuiButton from 'src/components/buttons/button';
 import MuiCheckbox from 'src/components/checkbox/checkbox';
 import MultiSelect from 'src/components/multi-select/multi-select';
 import RadiosGroup from 'src/components/radios-group/radios-group';
+import { scrollToTop } from 'src/utils/utils';
 
-const SnippetsFilters: FC = () => {
+interface ISnippetsFiltersProps {
+  scrollContainerRef?: MutableRefObject<HTMLElement | undefined>;
+}
+
+const SnippetsFilters: FC<ISnippetsFiltersProps> = ({ scrollContainerRef }) => {
   const [areFiltersOpened, setAreFiltersOpen] = useState<boolean>(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
@@ -88,6 +93,7 @@ const SnippetsFilters: FC = () => {
 
   const handleClickOnCollapseFilters = () => {
     setAreFiltersOpen(false);
+    scrollToTop(scrollContainerRef);
   };
 
   return (
