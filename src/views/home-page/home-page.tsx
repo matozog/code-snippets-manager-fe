@@ -44,9 +44,15 @@ const HomePage = () => {
         <SnippetsFilters scrollContainerRef={scrollContainerRef} />
         <SnippetsList />
       </HomePageContainer>
-      <FloatingButton isVisible={isMobile && isScrollMoved} withFadeInAnimation onClick={handleClickScrollAnchorButton}>
-        <KeyboardArrowUpIcon style={{ color: 'white' }} />
-      </FloatingButton>
+      {isMobile && isScrollMoved && (
+        <FloatingButton
+          isVisible={isMobile && isScrollMoved}
+          withFadeInAnimation
+          onClick={handleClickScrollAnchorButton}
+        >
+          <KeyboardArrowUpIcon style={{ color: 'white' }} />
+        </FloatingButton>
+      )}
       <MuiBackdrop isOpen={isLoading} />
     </>
   );
