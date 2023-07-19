@@ -12,6 +12,9 @@ const existInArray = (value: string, array: string[]) =>
 const isBetweenDates = (value: string, minDate: Dayjs | null, maxDate: Dayjs | null) =>
   dayjs(value).isBetween(minDate, maxDate, 'day', '[]');
 
+export const filterByKeyword = (snippets: Array<ICodeSnippet>, keyword: string): Array<ICodeSnippet> =>
+  snippets.filter((snippet) => snippet.name.includes(keyword));
+
 export const filterSnippets = (
   snippets: Array<ICodeSnippet>,
   programmingLanguages: Array<string>,

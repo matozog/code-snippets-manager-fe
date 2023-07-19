@@ -10,6 +10,7 @@ export interface IFiltersData {
 }
 
 const initialState = {
+  keyword: '',
   sortBy: '' as SortByType,
   sortAsc: true,
   filtersData: {} as IFiltersData,

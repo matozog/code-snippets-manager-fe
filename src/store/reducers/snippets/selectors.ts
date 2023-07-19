@@ -1,4 +1,4 @@
-import { filterSnippets, sortRecords } from './utils';
+import { filterByKeyword, filterSnippets, sortRecords } from './utils';
 
 import { Dayjs } from 'dayjs';
 import { ICodeSnippet } from 'src/types/models';
@@ -16,9 +16,19 @@ const getAddedAfter = (snippetsFilters: IFiltersState) => snippetsFilters.addedA
 const getFavourite = (snippetsFilters: IFiltersState) => snippetsFilters.favourite;
 const getSortBy = (snippetsFilters: IFiltersState) => snippetsFilters.sortBy;
 const getSortAsc = (snippetsFilters: IFiltersState) => snippetsFilters.sortAsc;
+const getKeyword = (SnippetsFilters: IFiltersState) => SnippetsFilters.keyword;
 
 const selectFilteredSnippets = createSelector(
-  [getCodeSnippets, getProgrammingLanguages, getTypes, getCreationPlaces, getAddedAfter, getAddedBefore, getFavourite],
+  [
+    getCodeSnippets,
+    getProgrammingLanguages,
+    getTypes,
+    getCreationPlaces,
+    getAddedAfter,
+    getAddedBefore,
+    getFavourite,
+    getKeyword,
+  ],
   (
     snippets: Array<ICodeSnippet>,
     programmingLanguage: Array<string>,
@@ -26,9 +36,18 @@ const selectFilteredSnippets = createSelector(
     creationPlaces: Array<string>,
     addedAfter: Dayjs | null,
     addedBefore: Dayjs | null,
-    favourite: boolean
+    favourite: boolean,
+    keyword: string
   ): Array<ICodeSnippet> =>
-    filterSnippets(snippets, programmingLanguage, types, creationPlaces, addedAfter, addedBefore, favourite)
+    filterSnippets(
+      filterByKeyword(snippets, keyword),
+      programmingLanguage,
+      types,
+      creationPlaces,
+      addedAfter,
+      addedBefore,
+      favourite
+    )
 );
 
 const selectSortedAndFilteredSnippets = createSelector(
