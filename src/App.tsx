@@ -7,8 +7,12 @@ import { Provider } from 'react-redux';
 import { ThemeProvider } from '@mui/material/styles';
 import { appTheme } from './themes/app.theme';
 import store from './store/config/store';
+import { useEffect } from 'react';
 
 function App() {
+  useEffect(() => {
+    window.history.scrollRestoration = 'manual';
+  }, []);
   return (
     <Provider store={store}>
       <ThemeProvider theme={appTheme}>

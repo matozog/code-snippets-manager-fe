@@ -19,8 +19,8 @@ const HomePage = () => {
   return (
     <>
       <HomePageContainer>
-        <SnippetsList />
         <SnippetsFilters />
+        <SnippetsList />
       </HomePageContainer>
       <MuiBackdrop isOpen={isLoading} />
     </>

@@ -5,7 +5,7 @@ export const HomePageContainer = styled(Box)(({ theme }) => ({
   width: '100%',
   height: 'calc(100% - 70px)', // header height
   display: 'flex',
-  flexDirection: 'column-reverse',
+  flexDirection: 'column',
   [theme.breakpoints.up('md')]: {
     flexDirection: 'row',
   },
