@@ -15,6 +15,7 @@ const CustomCodeEditor: FC<ICodeEditorProps> = ({ code, onValueChange }) => {
       onChange={(evn: any) => onValueChange(evn.target.value)}
       padding={15}
       style={{
+        minHeight: '100px',
         fontSize: 12,
         height: '100%',
         backgroundColor: '#f5f5f5',

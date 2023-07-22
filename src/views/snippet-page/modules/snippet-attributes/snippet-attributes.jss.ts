@@ -3,10 +3,12 @@ import { Box, styled } from '@mui/material';
 export const SnippetAttributesWrapper = styled(Box)(({ theme }) => ({
   display: 'flex',
   width: '50%',
-  marginBottom: 'auto',
   margin: theme.spacing(2),
   [theme.breakpoints.down('sm')]: {
     width: `calc(100% - ${theme.spacing(4)})`,
+  },
+  [theme.breakpoints.up('sm')]: {
+    marginBottom: 'auto',
   },
 }));
 
