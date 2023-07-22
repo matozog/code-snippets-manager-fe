@@ -17,8 +17,8 @@ function App() {
     <Provider store={store}>
       <ThemeProvider theme={appTheme}>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <HomePageHeader />
           <HashRouter>
+            <HomePageHeader />
             <AppRoutes />
           </HashRouter>
         </LocalizationProvider>

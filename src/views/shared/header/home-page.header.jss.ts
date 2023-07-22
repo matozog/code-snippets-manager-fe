@@ -1,4 +1,6 @@
 import { Box } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import NoteAddIcon from '@mui/icons-material/NoteAdd';
 import PersonIcon from '@mui/icons-material/Person';
 import { styled } from '@mui/material/styles';
 
@@ -13,12 +15,25 @@ export const HeaderContainer = styled(Box)(({ theme }) => ({
   height: '38px',
 }));
 
-export const AccountIconDetails = styled(PersonIcon)(({ theme }) => ({
-  cursor: 'pointer',
-  marginLeft: `${theme.spacing(1)}`,
-}));
-
 export const StyledLogo = styled(Box)(({ theme }) => ({
   marginRight: `${theme.spacing(1)}`,
   fontSize: '20px',
+}));
+
+export const ActionContainer = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  gap: theme.spacing(2),
+  marginLeft: theme.spacing(1),
+}));
+
+export const AccountIconDetails = styled(PersonIcon)(() => ({
+  cursor: 'pointer',
+}));
+
+export const NewSnippetIcon = styled(NoteAddIcon)(() => ({
+  cursor: 'pointer',
+}));
+
+export const MenuButton = styled(MenuIcon)(() => ({
+  cursor: 'pointer',
 }));
