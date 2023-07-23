@@ -4,6 +4,7 @@ import {
   AccountIconDetails,
   ActionContainer,
   HeaderContainer,
+  MenuActionButton,
   MenuButton,
   NewSnippetIcon,
   StyledLogo,
@@ -42,11 +43,17 @@ const HomePageHeader = () => {
       />
       <ActionContainer>
         {isMobileScreen ? (
-          <MenuButton />
+          <MenuActionButton>
+            <MenuButton />
+          </MenuActionButton>
         ) : (
           <>
-            <NewSnippetIcon onClick={handleOnClickNewSnippetIcon} />
-            <AccountIconDetails />
+            <MenuActionButton onClick={handleOnClickNewSnippetIcon}>
+              <NewSnippetIcon />
+            </MenuActionButton>
+            <MenuActionButton>
+              <AccountIconDetails />
+            </MenuActionButton>
           </>
         )}
       </ActionContainer>

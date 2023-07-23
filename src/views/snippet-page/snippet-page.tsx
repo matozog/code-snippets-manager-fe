@@ -44,7 +44,13 @@ const SnippetPage = () => {
     <NewSnippetPageWrapper>
       <form onSubmit={handleSubmit} style={{ height: '100%' }}>
         <NewSnippetPageActions>
-          <MuiButton text="Back" onClick={handleOnClickBackButton} icon={<ArrowBackIcon />} iconPlace="left" />
+          <MuiButton
+            text="Back"
+            variant="outlined"
+            onClick={handleOnClickBackButton}
+            icon={<ArrowBackIcon />}
+            iconPlace="left"
+          />
           <MuiButton text="Save" variant="contained" type="submit" />
         </NewSnippetPageActions>
         <NewSnippetPageContainer>
