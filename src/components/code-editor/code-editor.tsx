@@ -4,11 +4,13 @@ import { FC } from 'react';
 interface ICodeEditorProps {
   code: string;
   onValueChange: (codeValue: string) => void;
+  id?: string;
 }
 
-const CustomCodeEditor: FC<ICodeEditorProps> = ({ code, onValueChange }) => {
+const CustomCodeEditor: FC<ICodeEditorProps> = ({ code, onValueChange, id }) => {
   return (
     <CodeEditor
+      id={id}
       value={code}
       language="js"
       placeholder="Please enter JS code."

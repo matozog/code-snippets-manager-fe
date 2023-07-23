@@ -13,9 +13,9 @@ export type ISnippetsState = Readonly<typeof initialState>;
 
 export default (
   state: ISnippetsState = initialState,
-  action: ActionType<string, Record<string, unknown>, unknown, unknown>
+  action: ActionType<string, Record<string, unknown>, Record<string, unknown>, unknown>
 ): ISnippetsState => {
-  const { type, payload } = action;
+  const { type, payload, meta } = action;
 
   switch (type) {
     case REQUEST(types.FETCH_SNIPPETS):
@@ -34,6 +34,12 @@ export default (
         ...state,
         isLoading: false,
         error: 'Error during fetching snippets',
+      };
+
+    case types.ADD_NEW_SNIPPET:
+      return {
+        ...state,
+        snippets: [...state.snippets, meta?.data as unknown as ICodeSnippet],
       };
     default:
       return state;

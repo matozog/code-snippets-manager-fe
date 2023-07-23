@@ -10,11 +10,12 @@ interface IMuiButtonProps {
   // eslint-disable-next-line @typescript-eslint/ban-types
   icon?: ReactElement;
   iconPlace?: IconPlace;
+  type?: 'submit' | 'button' | 'reset';
 }
 
 export type TButtonVariants = 'text' | 'outlined' | 'contained';
 
-const MuiButton: FC<IMuiButtonProps> = ({ text, variant, onClick, icon, iconPlace }) => {
+const MuiButton: FC<IMuiButtonProps> = ({ text, variant, onClick, icon, iconPlace, type }) => {
   const renderButtonContentWithIcon = () => {
     if (!icon) return text;
 
@@ -34,7 +35,7 @@ const MuiButton: FC<IMuiButtonProps> = ({ text, variant, onClick, icon, iconPlac
   };
 
   return (
-    <MuiButtonComp variant={variant} onClick={onClick}>
+    <MuiButtonComp variant={variant} onClick={onClick} type={type}>
       {renderButtonContentWithIcon()}
     </MuiButtonComp>
   );

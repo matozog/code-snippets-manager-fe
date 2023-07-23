@@ -15,6 +15,7 @@ import { scrollToTop } from 'src/utils/utils';
 const HomePage = () => {
   const [isScrollMoved, setIsScrollMoved] = useState<boolean>(false);
   const scrollContainerRef = useRef<HTMLElement>();
+  const snippets = useAppSelector((root: IRootState) => root.snippetsData.snippets);
 
   const dispatch = useAppDispatch();
   const theme = useTheme();
@@ -29,7 +30,7 @@ const HomePage = () => {
   };
 
   useEffect(() => {
-    dispatch(snippetDuck.operations.fetchSnippets());
+    !snippets.length && dispatch(snippetDuck.operations.fetchSnippets());
 
     window.addEventListener('scroll', handleOnScroll, true);
 

@@ -1,5 +1,5 @@
 export interface ICodeSnippet {
-  id: string;
+  id?: string;
   name: string;
   description: string;
   content: string;
@@ -12,8 +12,20 @@ export interface ICodeSnippet {
   img?: string;
 }
 
+export const defaultCodeSnippet: ICodeSnippet = {
+  name: '',
+  description: '',
+  content: '',
+  isFavourite: false,
+  programmingLanguage: '',
+  type: '',
+  addedFrom: '',
+  addedDate: '',
+  tags: [],
+};
+
 export interface ITag {
-  id: string;
+  id?: string;
   name: string;
-  addedDate: string;
+  addedDate?: string;
 }
