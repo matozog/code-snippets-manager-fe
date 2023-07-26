@@ -7,11 +7,8 @@ export const SnippetsFiltersContainer = styled(Box, {
 })<{ isReadyToExpand?: boolean }>(({ theme, isReadyToExpand }) => ({
   display: 'flex',
   flexDirection: 'column',
-  width: `calc(100% - ${theme.spacing(8)})`,
-  border: `1px solid ${theme.palette.primary.main}`,
-  borderRadius: '6px',
+  width: `calc(100% - ${theme.spacing(4)})`,
   margin: theme.spacing(2),
-  padding: theme.spacing(2),
   gap: theme.spacing(2),
   justifyContent: isReadyToExpand ? 'center' : 'flex-start',
   cursor: isReadyToExpand ? 'pointer' : 'default',
@@ -22,9 +19,10 @@ export const SnippetsFiltersContainer = styled(Box, {
   },
 }));
 
-export const CollapsedFiltersInfo = styled(Box)(() => ({
+export const CollapsedFiltersInfo = styled(Box)(({ theme }) => ({
   justifyContent: 'center',
   display: 'flex',
+  padding: theme.spacing(2),
 }));
 
 export const FilterIcon = styled(FilterListIcon)(({ theme }) => ({
@@ -36,3 +34,10 @@ export const CollapseFiltersComponent = styled(Box)({
   justifyContent: 'center',
   cursor: 'pointer',
 });
+
+export const FiltersControlsContainer = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  padding: theme.spacing(2),
+  gap: theme.spacing(2),
+}));

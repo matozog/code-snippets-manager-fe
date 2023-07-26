@@ -9,19 +9,30 @@ import {
   NewSnippetIcon,
   StyledLogo,
 } from './home-page.header.jss';
+import { ChangeEvent, useMemo, useState } from 'react';
 import { IRootState, useAppDispatch } from 'src/store/config/store';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useMediaQuery, useTheme } from '@mui/material';
 
-import { ChangeEvent } from 'react';
+import BurgerMenu from './modules/burger-menu/burger-menu';
 import SearchBox from 'src/components/search-box/search-box';
-import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
+export interface IMenuItemProps {
+  label: string;
+  icon: JSX.Element;
+  action?: () => void;
+}
+
 const HomePageHeader = () => {
+  const [isBurgerMenuOpen, setBurgerMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
   const theme = useTheme();
   const isMobileScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const inputValue = useSelector((root: IRootState) => root.snippetsFilters.keyword);
+
+  const isNewSnippetPage = useMemo(() => location.pathname.includes('new-snippet'), [location]);
 
   const dispatch = useAppDispatch();
 
@@ -30,33 +41,66 @@ const HomePageHeader = () => {
 
   const handleOnClickNewSnippetIcon = () => {
     navigate('new-snippet');
+    setBurgerMenuOpen(false);
+  };
+
+  const handleOnClickAccountButton = () => {
+    setBurgerMenuOpen(false);
+  };
+
+  const handleToggleBurgerMenu = () => setBurgerMenuOpen(!isBurgerMenuOpen);
+
+  const MenuItemsList: IMenuItemProps[] = [
+    {
+      label: 'Add new snippet',
+      icon: <NewSnippetIcon />,
+      action: handleOnClickNewSnippetIcon,
+    },
+    { label: 'Account', icon: <AccountIconDetails />, action: handleOnClickAccountButton },
+  ];
+
+  const actionsRenderer = () => {
+    if (isMobileScreen) {
+      return (
+        <MenuActionButton onClick={handleToggleBurgerMenu}>
+          <MenuButton />
+        </MenuActionButton>
+      );
+    }
+
+    return (
+      <>
+        {MenuItemsList.map((item) => (
+          <MenuActionButton onClick={item.action}>{item.icon}</MenuActionButton>
+        ))}
+      </>
+    );
   };
 
   return (
     <HeaderContainer>
-      <StyledLogo>{isMobileScreen ? 'SM' : 'Snippets Manager'}</StyledLogo>
-      <SearchBox
-        id="home-page-searchbox"
-        placeholder="Type a word ..."
-        onChange={handleChangeSearchboxValue}
-        value={inputValue}
-      />
-      <ActionContainer>
-        {isMobileScreen ? (
-          <MenuActionButton>
-            <MenuButton />
-          </MenuActionButton>
-        ) : (
-          <>
-            <MenuActionButton onClick={handleOnClickNewSnippetIcon}>
-              <NewSnippetIcon />
-            </MenuActionButton>
-            <MenuActionButton>
-              <AccountIconDetails />
-            </MenuActionButton>
-          </>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          width: '100%',
+        }}
+      >
+        <StyledLogo>{isMobileScreen ? 'SM' : 'Snippets Manager'}</StyledLogo>
+        {!isNewSnippetPage && (
+          <SearchBox
+            id="home-page-searchbox"
+            placeholder="Type a word ..."
+            onChange={handleChangeSearchboxValue}
+            value={inputValue}
+          />
         )}
-      </ActionContainer>
+
+        <ActionContainer>{actionsRenderer()}</ActionContainer>
+      </div>
+      <BurgerMenu isOpen={isMobileScreen && isBurgerMenuOpen} itemsList={MenuItemsList} />
     </HeaderContainer>
   );
 };

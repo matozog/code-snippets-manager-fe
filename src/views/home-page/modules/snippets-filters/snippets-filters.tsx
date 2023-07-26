@@ -4,6 +4,7 @@ import {
   CollapseFiltersComponent,
   CollapsedFiltersInfo,
   FilterIcon,
+  FiltersControlsContainer,
   SnippetsFiltersContainer,
 } from './snippets-filters.jss';
 import { FC, MutableRefObject, useMemo, useRef, useState } from 'react';
@@ -17,6 +18,7 @@ import Dropdown from 'src/components/dropdown/dropdown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import MuiButton from 'src/components/buttons/button';
 import MuiCheckbox from 'src/components/checkbox/checkbox';
+import MuiPaper from 'src/components/paper/mui-paper';
 import MultiSelect from 'src/components/multi-select/multi-select';
 import RadiosGroup from 'src/components/radios-group/radios-group';
 import { scrollToTop } from 'src/utils/utils';
@@ -98,70 +100,72 @@ const SnippetsFilters: FC<ISnippetsFiltersProps> = ({ scrollContainerRef }) => {
 
   return (
     <SnippetsFiltersContainer ref={ref} onClick={handleClickOnExpandFilters} isReadyToExpand={areFiltersCollapsed}>
-      {areFiltersCollapsed ? (
-        <CollapsedFiltersInfo>
-          Filters <FilterIcon />
-        </CollapsedFiltersInfo>
-      ) : (
-        <>
-          <Dropdown
-            label="Sort by:"
-            dropdownOptions={sortByOptions}
-            handleOnChange={handleOnChangeSortByDropdown}
-            value={sortBy}
-          />
-          <RadiosGroup
-            radiosTitle="Sorting type:"
-            value={sortAsc ? 'sortAsc' : 'sortDesc'}
-            options={
-              new Map([
-                ['sortAsc', 'Ascending'],
-                ['sortDesc', 'Descending'],
-              ])
-            }
-            onChange={handleOnChangeSortAscRadio}
-          />
-          <CustomDivider />
-          <MultiSelect
-            selectedOptions={programmingLanguage}
-            onChange={handleOnChangeProgrammingLanguage}
-            options={programmingLanguages}
-            label="Programming language"
-          />
-          <MultiSelect
-            selectedOptions={selectedType}
-            onChange={handleOnChangeSnippetType}
-            options={types}
-            label="Type"
-          />
-          <MultiSelect
-            selectedOptions={selectedCreationPlace}
-            onChange={handleOnChangeSnippetLocalization}
-            options={creationPlaces}
-            label="Added from"
-          />
-          <CustomDivider />
-          <CustomDatepicker
-            label="Min date"
-            value={addedAfter}
-            onChange={handleOnChangeAddedAfterDate}
-            maxDate={addedBefore}
-          />
-          <CustomDatepicker
-            label="Max date"
-            value={addedBefore}
-            onChange={handleOnChangeAddedBeforeDate}
-            minDate={addedAfter}
-          />
-          <MuiCheckbox label="Favourite" value={favourite} onChange={handleOnChangeFavouriteControl} />
-          <MuiButton text="Clear filters" variant="contained" onClick={handleOnClearFiltersAction} />
-          {areFiltersOpened && isMobile && (
-            <CollapseFiltersComponent onClick={handleClickOnCollapseFilters}>
-              <KeyboardArrowUpIcon />
-            </CollapseFiltersComponent>
-          )}
-        </>
-      )}
+      <MuiPaper elevation={2}>
+        {areFiltersCollapsed ? (
+          <CollapsedFiltersInfo>
+            Filters <FilterIcon />
+          </CollapsedFiltersInfo>
+        ) : (
+          <FiltersControlsContainer>
+            <Dropdown
+              label="Sort by:"
+              dropdownOptions={sortByOptions}
+              handleOnChange={handleOnChangeSortByDropdown}
+              value={sortBy}
+            />
+            <RadiosGroup
+              radiosTitle="Sorting type:"
+              value={sortAsc ? 'sortAsc' : 'sortDesc'}
+              options={
+                new Map([
+                  ['sortAsc', 'Ascending'],
+                  ['sortDesc', 'Descending'],
+                ])
+              }
+              onChange={handleOnChangeSortAscRadio}
+            />
+            <CustomDivider />
+            <MultiSelect
+              selectedOptions={programmingLanguage}
+              onChange={handleOnChangeProgrammingLanguage}
+              options={programmingLanguages}
+              label="Programming language"
+            />
+            <MultiSelect
+              selectedOptions={selectedType}
+              onChange={handleOnChangeSnippetType}
+              options={types}
+              label="Type"
+            />
+            <MultiSelect
+              selectedOptions={selectedCreationPlace}
+              onChange={handleOnChangeSnippetLocalization}
+              options={creationPlaces}
+              label="Added from"
+            />
+            <CustomDivider />
+            <CustomDatepicker
+              label="Min date"
+              value={addedAfter}
+              onChange={handleOnChangeAddedAfterDate}
+              maxDate={addedBefore}
+            />
+            <CustomDatepicker
+              label="Max date"
+              value={addedBefore}
+              onChange={handleOnChangeAddedBeforeDate}
+              minDate={addedAfter}
+            />
+            <MuiCheckbox label="Favourite" value={favourite} onChange={handleOnChangeFavouriteControl} />
+            <MuiButton text="Clear filters" variant="contained" onClick={handleOnClearFiltersAction} />
+            {areFiltersOpened && isMobile && (
+              <CollapseFiltersComponent onClick={handleClickOnCollapseFilters}>
+                <KeyboardArrowUpIcon />
+              </CollapseFiltersComponent>
+            )}
+          </FiltersControlsContainer>
+        )}
+      </MuiPaper>
     </SnippetsFiltersContainer>
   );
 };

@@ -7,10 +7,10 @@ import { styled } from '@mui/material/styles';
 export const HeaderContainer = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.primary.main,
   justifyContent: 'space-between',
-  alignItems: 'center',
   display: 'flex',
   color: '#fff',
   height: '70px',
+  width: '100%',
 }));
 
 export const StyledLogo = styled(Box)(({ theme }) => ({

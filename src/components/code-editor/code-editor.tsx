@@ -1,5 +1,6 @@
+import { ChangeEvent, FC } from 'react';
+
 import CodeEditor from '@uiw/react-textarea-code-editor';
-import { FC } from 'react';
 
 interface ICodeEditorProps {
   code: string;
@@ -14,7 +15,7 @@ const CustomCodeEditor: FC<ICodeEditorProps> = ({ code, onValueChange, id }) => 
       value={code}
       language="js"
       placeholder="Please enter JS code."
-      onChange={(evn: any) => onValueChange(evn.target.value)}
+      onChange={(evn: ChangeEvent<HTMLTextAreaElement>) => onValueChange(evn.target.value)}
       padding={15}
       style={{
         minHeight: '100px',

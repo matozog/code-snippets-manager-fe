@@ -6,7 +6,6 @@ export const SnippetsListContainer = styled(Box)(({ theme }) => ({
   flexDirection: 'column',
   gap: theme.spacing(3),
   width: `calc(100% - ${theme.spacing(4)})`,
-  borderRadius: '5px',
   padding: `0 ${theme.spacing(2)} 0 ${theme.spacing(2)}`,
   margin: `${theme.spacing(2)} 0 ${theme.spacing(2)} 0`,
   [theme.breakpoints.up('md')]: {

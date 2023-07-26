@@ -2,17 +2,19 @@ import { Box, Typography } from '@mui/material';
 
 import { styled } from '@mui/material/styles';
 
+export const SnippetCardWrapper = styled(Box)(({ theme }) => ({
+  height: '250px',
+  [theme.breakpoints.down('sm')]: {
+    height: '300px',
+  },
+}));
+
 export const SnippetCardContainer = styled(Box)(({ theme }) => ({
+  padding: theme.spacing(2),
   display: 'flex',
   flexDirection: 'column',
   gap: theme.spacing(1.5),
-  border: `1px solid ${theme.palette.primary.main}`,
-  padding: theme.spacing(2),
-  borderRadius: '6px',
-  height: '200px',
-  [theme.breakpoints.down('sm')]: {
-    height: '250px',
-  },
+  height: `calc(100% - ${theme.spacing(3)})`,
 }));
 
 export const SnippetInfoContainer = styled(Box)(() => ({
