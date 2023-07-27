@@ -11,6 +11,9 @@ export const HeaderContainer = styled(Box)(({ theme }) => ({
   color: '#fff',
   height: '70px',
   width: '100%',
+  '&:hover': {
+    cursor: 'pointer',
+  },
 }));
 
 export const StyledLogo = styled(Box)(({ theme }) => ({

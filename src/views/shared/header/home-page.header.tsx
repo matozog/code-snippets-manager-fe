@@ -50,6 +50,8 @@ const HomePageHeader = () => {
 
   const handleToggleBurgerMenu = () => setBurgerMenuOpen(!isBurgerMenuOpen);
 
+  const handleClickOnLogo = () => navigate('/');
+
   const MenuItemsList: IMenuItemProps[] = [
     {
       label: 'Add new snippet',
@@ -71,7 +73,9 @@ const HomePageHeader = () => {
     return (
       <>
         {MenuItemsList.map((item) => (
-          <MenuActionButton onClick={item.action}>{item.icon}</MenuActionButton>
+          <MenuActionButton key={item.label} onClick={item.action}>
+            {item.icon}
+          </MenuActionButton>
         ))}
       </>
     );
@@ -88,7 +92,7 @@ const HomePageHeader = () => {
           width: '100%',
         }}
       >
-        <StyledLogo>{isMobileScreen ? 'SM' : 'Snippets Manager'}</StyledLogo>
+        <StyledLogo onClick={handleClickOnLogo}>{isMobileScreen ? 'SM' : 'Snippets Manager'}</StyledLogo>
         {!isNewSnippetPage && (
           <SearchBox
             id="home-page-searchbox"

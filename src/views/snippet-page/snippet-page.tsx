@@ -42,7 +42,7 @@ const SnippetPage = () => {
 
   return (
     <NewSnippetPageWrapper>
-      <form onSubmit={handleSubmit} style={{ height: '100%' }}>
+      <form onSubmit={handleSubmit} style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
         <NewSnippetPageActions>
           <MuiButton
             text="Back"

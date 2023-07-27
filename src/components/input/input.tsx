@@ -1,4 +1,4 @@
-import { ChangeEvent, FC } from 'react';
+import { ChangeEvent, FC, FocusEvent } from 'react';
 
 import { StyledTextField } from './input.jss';
 
@@ -7,7 +7,7 @@ interface IInputProps {
   label: string;
   value: string;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
-  onBlur?: (event: any) => void;
+  onBlur?: (event: FocusEvent<HTMLInputElement | HTMLTextAreaElement, Element>) => void;
 }
 
 const Input: FC<IInputProps> = ({ value, onChange, label, id, onBlur }) => {

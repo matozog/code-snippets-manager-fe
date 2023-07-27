@@ -4,7 +4,7 @@ export interface ICodeSnippet {
   description: string;
   content: string;
   isFavourite: boolean;
-  programmingLanguage: string;
+  programmingLanguage: string | null;
   type: string;
   addedFrom: string;
   addedDate: string;
@@ -17,7 +17,7 @@ export const defaultCodeSnippet: ICodeSnippet = {
   description: '',
   content: '',
   isFavourite: false,
-  programmingLanguage: '',
+  programmingLanguage: null,
   type: '',
   addedFrom: '',
   addedDate: '',

@@ -16,6 +16,8 @@ import MuiChip from 'src/components/chip/chip';
 import MuiPaper from 'src/components/paper/mui-paper';
 import TextArea from 'src/components/text-area/text-area';
 import { FormikValues, useFormik } from 'formik';
+import MuiAutocomplete from 'src/components/autocomplete/autocomplete';
+import { refractor } from 'refractor';
 
 export interface ISnippetAttributes<K extends FormikValues> {
   formikProps?: ReturnType<typeof useFormik<K>>;
@@ -34,16 +36,21 @@ const SnippetAttributes = <K extends FormikValues>({ formikProps }: ISnippetAttr
     setNewTag('');
   };
 
+  const handleChangeProgrammingLanguage = (event: unknown, newValue: string | null) => {
+    setFieldValue?.('programmingLanguage', newValue);
+  };
+
   return (
     <SnippetAttributesWrapper>
       <MuiPaper elevation={2} style={{ padding: theme.spacing(2) }}>
         <SnippetAttributesContainer>
           <Input label="Name" value={name} id="name" onChange={handleChange} onBlur={handleBlur} />
-          <Input
+          <MuiAutocomplete
             label="Programming language"
             id="programmingLanguage"
             value={programmingLanguage}
-            onChange={handleChange}
+            onChange={handleChangeProgrammingLanguage}
+            options={refractor.listLanguages()}
           />
           <Input label="Type" id="type" value={type} onChange={handleChange} />
           <Input label="Creation place" id="addedFrom" value={addedFrom} onChange={handleChange} />

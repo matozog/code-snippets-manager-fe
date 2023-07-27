@@ -6,15 +6,16 @@ interface ICodeEditorProps {
   code: string;
   onValueChange: (codeValue: string) => void;
   id?: string;
+  language?: string;
 }
 
-const CustomCodeEditor: FC<ICodeEditorProps> = ({ code, onValueChange, id }) => {
+const CustomCodeEditor: FC<ICodeEditorProps> = ({ code, onValueChange, id, language }) => {
   return (
     <CodeEditor
       id={id}
       value={code}
-      language="js"
-      placeholder="Please enter JS code."
+      language={language}
+      placeholder={`Please enter ${language} code here.`}
       onChange={(evn: ChangeEvent<HTMLTextAreaElement>) => onValueChange(evn.target.value)}
       padding={15}
       style={{

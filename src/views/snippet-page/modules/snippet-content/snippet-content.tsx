@@ -10,7 +10,7 @@ interface ISnippetContentProps<K extends FormikValues> {
 
 const SnippetContent = <K extends FormikValues>({ formikProps }: ISnippetContentProps<K>) => {
   const { values, setFieldValue } = formikProps || {};
-  const { content } = (values as unknown as ICodeSnippet) || {};
+  const { content, programmingLanguage } = (values as unknown as ICodeSnippet) || {};
   const handleOnContentChange = (codeValue: string) => {
     setFieldValue('content', codeValue);
   };
@@ -18,7 +18,12 @@ const SnippetContent = <K extends FormikValues>({ formikProps }: ISnippetContent
   return (
     <SnippetContentContainer>
       <MuiPaper elevation={2}>
-        <CodeEditor id="content" code={content} onValueChange={handleOnContentChange} />
+        <CodeEditor
+          id="content"
+          code={content}
+          onValueChange={handleOnContentChange}
+          language={programmingLanguage || 'js'}
+        />
       </MuiPaper>
     </SnippetContentContainer>
   );
