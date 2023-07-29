@@ -21,15 +21,22 @@ import ReadMoreButton from 'src/components/buttons/read-more/read-more';
 import { useIsOverflow } from 'src/hooks/useOverflow';
 
 interface ISnippetCardContentProps {
-  codeSnippet: ICodeSnippet;
+  codeSnippet: ICodeSnippet | null;
+  onClickReadMoreButton?: (codeSnippet: ICodeSnippet | null) => void;
 }
 
-const SnippetCardContent: FC<ISnippetCardContentProps> = ({ codeSnippet }) => {
+const SnippetCardContent: FC<ISnippetCardContentProps> = ({ codeSnippet, onClickReadMoreButton }) => {
   const contentRef: MutableRefObject<HTMLDivElement | undefined> = useRef();
   const tagsRef: MutableRefObject<HTMLDivElement | undefined> = useRef();
 
   const { isOverflow: isOverflowContent } = useIsOverflow(contentRef);
   const { isHorizontalOverflow: isOverflowTags } = useIsOverflow(tagsRef);
+
+  const handleOnClickReadMoreButton = () => {
+    onClickReadMoreButton?.(codeSnippet);
+  };
+
+  if (!codeSnippet) return null;
 
   return (
     <SnippetCardContainer>
@@ -58,7 +65,7 @@ const SnippetCardContent: FC<ISnippetCardContentProps> = ({ codeSnippet }) => {
         <SnippetCode ref={contentRef}>
           {isOverflowContent && (
             <SnippetContentOverflow>
-              <ReadMoreButton />
+              <ReadMoreButton onClick={handleOnClickReadMoreButton} />
             </SnippetContentOverflow>
           )}
           <SnippetContent>{codeSnippet.content}</SnippetContent>

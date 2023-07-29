@@ -6,13 +6,14 @@ import { SnippetCardWrapper } from './snippet-card.jss';
 
 interface ISnippetCardProps {
   codeSnippet: ICodeSnippet;
+  onClickReadMoreButton?: (codeSnippet: ICodeSnippet | null) => void;
 }
 
-const SnippetCard: FC<ISnippetCardProps> = ({ codeSnippet }) => {
+const SnippetCard: FC<ISnippetCardProps> = ({ codeSnippet, onClickReadMoreButton }) => {
   return (
     <SnippetCardWrapper>
       <MuiPaper elevation={8} style={{ height: '100%' }}>
-        <SnippetCardContent codeSnippet={codeSnippet} />
+        <SnippetCardContent codeSnippet={codeSnippet} onClickReadMoreButton={onClickReadMoreButton} />
       </MuiPaper>
     </SnippetCardWrapper>
   );
