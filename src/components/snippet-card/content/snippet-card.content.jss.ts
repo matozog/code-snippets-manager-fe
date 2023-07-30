@@ -39,6 +39,9 @@ export const SnippetDescription = styled(Box)(() => ({
 
 export const SnippetTitle = styled(Typography)(({ theme }) => ({
   marginBottom: theme.spacing(1),
+  [theme.breakpoints.down('sm')]: {
+    fontSize: '22px',
+  },
   fontSize: '24px',
 }));
 
@@ -55,6 +58,7 @@ export const SnippetContentOverflow = styled(Box)(() => ({
   alignItems: 'flex-end',
   justifyContent: 'center',
   background: 'linear-gradient(transparent 20%,#FFF 75%)',
+  zIndex: 1300,
 }));
 
 export const SnippetCode = styled(Box)(() => ({
@@ -74,3 +78,20 @@ export const TagsChipContainer = styled(Box, {
 }));
 
 export const SnippetProperties = styled(Box)(() => ({ display: 'flex' }));
+
+export const SnippetDetails = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  margin: `${theme.spacing(1)} 0`,
+  gap: theme.spacing(2),
+  flexWrap: 'wrap',
+}));
+
+export const SnippetDetail = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  gap: theme.spacing(0.5),
+}));
+
+export const SnippetDetailLabel = styled(Box)(() => ({ fontSize: '18px', fontWeight: 500 }));
+
+export const SnippetDetailValue = styled(Box)(() => ({}));

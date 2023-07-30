@@ -30,7 +30,7 @@ interface ISnippetsFiltersProps {
 const SnippetsFilters: FC<ISnippetsFiltersProps> = ({ scrollContainerRef }) => {
   const [areFiltersOpened, setAreFiltersOpen] = useState<boolean>(false);
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
   const filtersData = useAppSelector((root: IRootState) => root.snippetsFilters.filtersData);
   const sortBy = useAppSelector((root: IRootState) => root.snippetsFilters.sortBy);

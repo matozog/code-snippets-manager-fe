@@ -13,7 +13,7 @@ const SnippetCard: FC<ISnippetCardProps> = ({ codeSnippet, onClickReadMoreButton
   return (
     <SnippetCardWrapper>
       <MuiPaper elevation={8} style={{ height: '100%' }}>
-        <SnippetCardContent codeSnippet={codeSnippet} onClickReadMoreButton={onClickReadMoreButton} />
+        <SnippetCardContent codeSnippet={codeSnippet} onClickReadMoreButton={onClickReadMoreButton} withReadmore />
       </MuiPaper>
     </SnippetCardWrapper>
   );
