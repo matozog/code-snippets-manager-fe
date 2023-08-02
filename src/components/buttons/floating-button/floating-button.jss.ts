@@ -22,6 +22,7 @@ export const StyledFab = styled(Fab, {
     color: 'black',
     float: 'right',
     visibility: isVisible ? 'visible' : 'hidden',
+    zIndex: 1300,
     animation: animationRule,
     '&:hover': {
       background: theme.palette.text.primary,

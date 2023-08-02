@@ -6,7 +6,7 @@ export const ModalDialogContent = styled(Box)(({ theme }) => ({
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: '90%',
-  maxHeight: '90%',
+  height: '70%',
   overflow: 'hidden',
   [theme.breakpoints.up('sm')]: {
     width: '70%',

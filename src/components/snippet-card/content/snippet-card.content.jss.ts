@@ -12,7 +12,7 @@ export const SnippetCardContainer = styled(Box)(({ theme }) => ({
 
 export const SnippetInfoContainer = styled(Box)(() => ({
   width: '100%',
-  height: '75%',
+  height: '80%',
   display: 'flex',
   flexDirection: 'column',
 }));
@@ -20,9 +20,7 @@ export const SnippetInfoContainer = styled(Box)(() => ({
 export const TagsContainer = styled(Box)(() => ({
   display: 'flex',
   width: '100%',
-  height: 'calc(25% - 24px)',
-  alignItems: 'center',
-  justifyContent: 'space-between',
+  maxHeight: 'calc(20% - 24px)',
 }));
 
 export const SnippetImageContainer = styled(Box)(() => ({
@@ -75,6 +73,7 @@ export const TagsChipContainer = styled(Box, {
   gap: theme.spacing(1),
   width: isOverflow ? '80%' : '100%',
   overflowX: 'auto',
+  flexWrap: 'wrap',
 }));
 
 export const SnippetProperties = styled(Box)(() => ({ display: 'flex' }));

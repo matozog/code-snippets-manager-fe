@@ -64,9 +64,7 @@ const HomePage = () => {
         </FloatingButton>
       )}
       <ModalDialog
-        content={
-          <SnippetCardContent codeSnippet={selectedSnippet} editorStyles={{ overflow: 'auto', maxHeight: '800px' }} />
-        }
+        content={<SnippetCardContent codeSnippet={selectedSnippet} editorStyles={{ overflow: 'auto' }} />}
         isOpen={!!selectedSnippet}
         handleClose={handleCloseModal}
       />
