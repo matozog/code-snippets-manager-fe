@@ -1,10 +1,10 @@
 export interface ICodeSnippet {
-  id: string;
+  id?: string;
   name: string;
   description: string;
   content: string;
-  favorite: boolean;
-  programmingLanguage: string;
+  isFavourite: boolean;
+  programmingLanguage: string | null;
   type: string;
   addedFrom: string;
   addedDate: string;
@@ -12,8 +12,20 @@ export interface ICodeSnippet {
   img?: string;
 }
 
+export const defaultCodeSnippet: ICodeSnippet = {
+  name: '',
+  description: '',
+  content: '',
+  isFavourite: false,
+  programmingLanguage: null,
+  type: '',
+  addedFrom: '',
+  addedDate: '',
+  tags: [],
+};
+
 export interface ITag {
-  id: string;
+  id?: string;
   name: string;
-  addedDate: string;
+  addedDate?: string;
 }

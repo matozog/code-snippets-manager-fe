@@ -11,7 +11,7 @@ interface IMultiSelectProps {
   label: string;
 }
 
-const MultiSelect: FC<IMultiSelectProps> = ({ onChange, selectedOptions, options, label }) => {
+const MultiSelect: FC<IMultiSelectProps> = ({ onChange, selectedOptions, options = [], label }) => {
   return (
     <MultiSelectFormContainer>
       <StyledInputLabel style={{ minWidth: 'max-content' }} id="demo-simple-select-helper-label">

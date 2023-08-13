@@ -3,6 +3,7 @@ import * as filtersDuck from './../filters';
 import { FAILURE, REQUEST, SUCCESS } from 'src/store/config/constants';
 import { HTTPService, requestAxios } from 'src/store/services/http.service';
 
+import { ICodeSnippet } from 'src/types/models';
 import MockAdapter from 'axios-mock-adapter';
 import snippetsList from 'src/assets/mocks/snippets.json';
 import types from './types';
@@ -41,3 +42,10 @@ export const fetchSnippets = () => (dispatch: any) => {
   dispatch(prepareFetchSnippets());
   dispatch(fetchSnippetsData());
 };
+
+export const addNewSnippet = (newSnippet: ICodeSnippet) => ({
+  type: types.ADD_NEW_SNIPPET,
+  meta: {
+    data: newSnippet,
+  },
+});

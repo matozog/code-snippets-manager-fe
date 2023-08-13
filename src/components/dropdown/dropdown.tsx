@@ -7,9 +7,10 @@ interface IDropdownProps {
   handleOnChange: (value: SelectChangeEvent<string>) => void;
   value: string;
   label: string;
+  dropdownOptions: Map<string, string>;
 }
 
-const Dropdown: FC<IDropdownProps> = ({ handleOnChange, value, label }) => {
+const Dropdown: FC<IDropdownProps> = ({ handleOnChange, value, label, dropdownOptions = [] }) => {
   return (
     <DropdownFormContainer>
       <StyledInputLabel id="demo-simple-select-helper-label">{label}</StyledInputLabel>
@@ -23,9 +24,11 @@ const Dropdown: FC<IDropdownProps> = ({ handleOnChange, value, label }) => {
         <MenuItem value="">
           <em>None</em>
         </MenuItem>
-        <MenuItem value={10}>Ten</MenuItem>
-        <MenuItem value={20}>Twenty</MenuItem>
-        <MenuItem value={30}>Thirty</MenuItem>
+        {Array.from(dropdownOptions).map(([key, value]) => (
+          <MenuItem key={key} value={key}>
+            {value}
+          </MenuItem>
+        ))}
       </Select>
     </DropdownFormContainer>
   );

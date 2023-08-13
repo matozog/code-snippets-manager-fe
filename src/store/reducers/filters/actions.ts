@@ -1,5 +1,5 @@
+import { Dayjs } from 'dayjs';
 import { ICodeSnippet } from 'src/types/models';
-import { REQUEST } from 'src/store/config/constants';
 import { mapSnippetsDataToFiltersData } from './mappers';
 import types from './types';
 
@@ -10,11 +10,28 @@ const updateFiltersData = (snippetsData: ICodeSnippet[]) => ({
   },
 });
 
-const changeSortBy = (sortBy: string) => ({
-  type: REQUEST(types.CHANGE_SORT_BY),
+const changeFiltersField = (fieldKey: string, value: string | string[] | boolean) => ({
+  type: types.CHANGE_FILTERS_FIELD,
   meta: {
-    data: sortBy,
+    data: {
+      fieldKey,
+      value,
+    },
   },
 });
 
-export { changeSortBy, updateFiltersData };
+const changeCalendarFilterField = (fieldKey: string, value: Dayjs | null) => ({
+  type: types.CHANGE_FILTERS_FIELD,
+  meta: {
+    data: {
+      fieldKey,
+      value,
+    },
+  },
+});
+
+const clearFilters = () => ({
+  type: types.CLEAR_FILTERS,
+});
+
+export { changeFiltersField, updateFiltersData, changeCalendarFilterField, clearFilters };

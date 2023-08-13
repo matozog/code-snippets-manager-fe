@@ -1,6 +1,8 @@
 import * as actions from './actions';
 
-const changeSortBy = actions.changeSortBy;
+const changeFiltersField = actions.changeFiltersField;
+const changeCalendarFilterField = actions.changeCalendarFilterField;
 const updateFiltersData = actions.updateFiltersData;
+const clearFilters = actions.clearFilters;
 
-export { changeSortBy, updateFiltersData };
+export { changeFiltersField, updateFiltersData, changeCalendarFilterField, clearFilters };

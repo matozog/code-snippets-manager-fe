@@ -1,7 +1,9 @@
 const PREFIX = 'snippets';
 
 const FETCH_SNIPPETS = 'FETCH_SNIPPETS';
+const ADD_NEW_SNIPPET = 'ADD_NEW_SNIPPET';
 
 export default {
   FETCH_SNIPPETS: `${PREFIX}/${FETCH_SNIPPETS}`,
+  ADD_NEW_SNIPPET: `${PREFIX}/${ADD_NEW_SNIPPET}`,
 };

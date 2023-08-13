@@ -6,9 +6,12 @@ import RadioButton from '../buttons/radio/radio';
 
 interface IRadiosGroupProps {
   radiosTitle: string;
+  options: Map<string, string>;
+  value: string;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const RadiosGroup: FC<IRadiosGroupProps> = ({ radiosTitle }) => {
+const RadiosGroup: FC<IRadiosGroupProps> = ({ radiosTitle, options, onChange, value }) => {
   return (
     <FormControl>
       <StyledFormLabel id="demo-radio-buttons-group-label">{radiosTitle}</StyledFormLabel>
@@ -16,9 +19,12 @@ const RadiosGroup: FC<IRadiosGroupProps> = ({ radiosTitle }) => {
         aria-labelledby="demo-radio-buttons-group-label"
         defaultValue="female"
         name="radio-buttons-group"
+        onChange={onChange}
+        value={value}
       >
-        <FormControlLabel value="female" control={<RadioButton value="female" />} label="Ascending" />
-        <FormControlLabel value="male" control={<RadioButton value="male" />} label="Descending" />
+        {Array.from(options).map(([key, value]) => (
+          <FormControlLabel key={key} value={key} control={<RadioButton value={key} />} label={value} />
+        ))}
       </StyledRadioGroup>
     </FormControl>
   );
