@@ -11,7 +11,6 @@ interface ISnippetListProps {
   onClickSnippet?: (codeSnippet: ICodeSnippet | null) => void;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const SnippetsList: FC<ISnippetListProps> = ({ onClickSnippet }) => {
   const snippetsList = useAppSelector((root: IRootState) =>
     snippetDuck.selectors.selectSortedAndFilteredSnippets({ ...root.snippetsData, ...root.snippetsFilters })

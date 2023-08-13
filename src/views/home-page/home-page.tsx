@@ -41,10 +41,10 @@ const HomePage = () => {
   useEffect(() => {
     !snippets.length && dispatch(snippetDuck.operations.fetchSnippets());
 
-    window.addEventListener('scroll', handleOnScroll, true);
+    scrollContainerRef?.current?.addEventListener('scroll', handleOnScroll, true);
 
     return () => {
-      window.removeEventListener('scroll', handleOnScroll, true);
+      scrollContainerRef?.current?.removeEventListener('scroll', handleOnScroll, true);
     };
   }, []);
 

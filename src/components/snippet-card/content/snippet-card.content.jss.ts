@@ -1,5 +1,7 @@
 import { Box, Typography } from '@mui/material';
 
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import EditIcon from '@mui/icons-material/Edit';
 import { styled } from '@mui/material/styles';
 
 export const SnippetCardContainer = styled(Box)(({ theme }) => ({
@@ -35,8 +37,35 @@ export const SnippetDescription = styled(Box)(() => ({
   flexDirection: 'column',
 }));
 
+export const SnippetTitleContainer = styled(Box)(() => ({
+  display: 'flex',
+  justifyContent: 'space-between',
+}));
+
+export const EditIconButton = styled(EditIcon)(() => ({
+  height: '100%',
+  '&:hover': {
+    cursor: 'pointer',
+  },
+}));
+
+export const SnippetActionContainer = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  gap: theme.spacing(1),
+}));
+
+export const CopySnippetButton = styled(ContentCopyIcon)(() => ({
+  height: '100%',
+  '&:hover': {
+    cursor: 'pointer',
+  },
+}));
+
 export const SnippetTitle = styled(Typography)(({ theme }) => ({
   marginBottom: theme.spacing(1),
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
   [theme.breakpoints.down('sm')]: {
     fontSize: '22px',
   },
@@ -60,6 +89,7 @@ export const SnippetContentOverflow = styled(Box)(() => ({
 }));
 
 export const SnippetCode = styled(Box)(() => ({
+  height: 'calc(100% - 100px)',
   width: '100%',
   display: 'flex',
   overflow: 'hidden',
@@ -76,13 +106,14 @@ export const TagsChipContainer = styled(Box, {
   flexWrap: 'wrap',
 }));
 
-export const SnippetProperties = styled(Box)(() => ({ display: 'flex' }));
+export const SnippetProperties = styled(Box)(() => ({ display: 'flex', height: '100px' }));
 
 export const SnippetDetails = styled(Box)(({ theme }) => ({
   display: 'flex',
   margin: `${theme.spacing(1)} 0`,
   gap: theme.spacing(2),
   flexWrap: 'wrap',
+  overflowY: 'auto',
 }));
 
 export const SnippetDetail = styled(Box)(({ theme }) => ({

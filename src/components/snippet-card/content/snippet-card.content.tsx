@@ -1,5 +1,9 @@
+import { Box, useMediaQuery, useTheme } from '@mui/material';
 import { CSSProperties, FC, MutableRefObject, Ref, useRef } from 'react';
 import {
+  CopySnippetButton,
+  EditIconButton,
+  SnippetActionContainer,
   SnippetCardContainer,
   SnippetCode,
   SnippetContentOverflow,
@@ -12,15 +16,16 @@ import {
   SnippetInfoContainer,
   SnippetProperties,
   SnippetTitle,
+  SnippetTitleContainer,
   TagsChipContainer,
   TagsContainer,
 } from './snippet-card.content.jss';
 
-import { Box } from '@mui/material';
 import CustomCodeEditor from 'src/components/code-editor/code-editor';
 import CustomDivider from 'src/components/custom-divider/custom-divider';
 import { ICodeSnippet } from 'src/types/models';
 import MuiChip from 'src/components/chip/chip';
+import OptionsButton from 'src/components/buttons/options-button/options-button';
 import ReadMoreButton from 'src/components/buttons/read-more/read-more';
 import { useIsOverflow } from 'src/hooks/useOverflow';
 
@@ -39,6 +44,9 @@ const SnippetCardContent: FC<ISnippetCardContentProps> = ({
 }) => {
   const contentRef: Ref<HTMLTextAreaElement | undefined> = useRef();
   const tagsRef: MutableRefObject<HTMLDivElement | undefined> = useRef();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const isLowResolution = useMediaQuery(theme.breakpoints.down(400));
 
   const { isOverflow: isOverflowContent } = useIsOverflow(contentRef);
   const { isHorizontalOverflow: isOverflowTags } = useIsOverflow(tagsRef);
@@ -55,7 +63,7 @@ const SnippetCardContent: FC<ISnippetCardContentProps> = ({
     <SnippetCardContainer>
       <SnippetInfoContainer>
         <SnippetProperties>
-          {codeSnippet?.img && (
+          {codeSnippet?.img && !isLowResolution && (
             <SnippetImageContainer>
               <Box
                 component="img"
@@ -72,7 +80,15 @@ const SnippetCardContent: FC<ISnippetCardContentProps> = ({
             </SnippetImageContainer>
           )}
           <SnippetDescription>
-            <SnippetTitle>{name}</SnippetTitle>
+            <SnippetTitleContainer>
+              <SnippetTitle>{name}</SnippetTitle>
+              {!isMobile && (
+                <SnippetActionContainer>
+                  <EditIconButton />
+                  <CopySnippetButton />
+                </SnippetActionContainer>
+              )}
+            </SnippetTitleContainer>
             <CustomDivider />
             <SnippetDetails>
               <SnippetDetail>
@@ -92,7 +108,6 @@ const SnippetCardContent: FC<ISnippetCardContentProps> = ({
               <ReadMoreButton onClick={handleOnClickReadMoreButton} />
             </SnippetContentOverflow>
           )}
-          {/* <SnippetContent>{codeSnippet.content}</SnippetContent> */}
           <CustomCodeEditor
             ref={contentRef}
             code={content}
@@ -109,7 +124,7 @@ const SnippetCardContent: FC<ISnippetCardContentProps> = ({
             <MuiChip key={tag.name} name={`# ${tag.name}`} />
           ))}
         </TagsChipContainer>
-        {/* {isOverflowTags && <TooltipInfo />} */}
+        {isMobile && <OptionsButton isOpen />}
       </TagsContainer>
     </SnippetCardContainer>
   );

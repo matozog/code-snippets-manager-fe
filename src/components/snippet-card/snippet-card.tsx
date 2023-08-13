@@ -12,7 +12,7 @@ interface ISnippetCardProps {
 const SnippetCard: FC<ISnippetCardProps> = ({ codeSnippet, onClickReadMoreButton }) => {
   return (
     <SnippetCardWrapper>
-      <MuiPaper elevation={8} style={{ height: '100%' }}>
+      <MuiPaper elevation={8} style={{ height: 'inherit' }}>
         <SnippetCardContent codeSnippet={codeSnippet} onClickReadMoreButton={onClickReadMoreButton} withReadmore />
       </MuiPaper>
     </SnippetCardWrapper>

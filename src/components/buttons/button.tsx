@@ -11,6 +11,7 @@ interface IMuiButtonProps {
   icon?: ReactElement;
   iconPlace?: IconPlace;
   type?: 'submit' | 'button' | 'reset';
+  id?: string;
 }
 
 export type TButtonVariants = 'text' | 'outlined' | 'contained';
