@@ -1,6 +1,14 @@
-# Getting Started with Create React App
+# Snippets manager application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Application to store and manage code snippets. The destination can be different but mainly it is writting for developers.
+
+## Current status
+
+|  Stage |  Status |
+|---|---|
+|  First deployment client application | (V)  |
+|  Integration with BE | (X) |
+|  Integration with VSC | (X) |
 
 ## Available Scripts
 
@@ -28,6 +36,10 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `npm run deploy`
+
+This script build application and deploy it on Github pages.
 
 ### `npm run eject`
 
