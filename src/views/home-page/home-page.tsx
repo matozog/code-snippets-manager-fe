@@ -28,7 +28,9 @@ const HomePage = () => {
 
   const isLoading = useAppSelector((root: IRootState) => root.snippetsData.isLoading);
 
-  const handleOnScroll = (event: Event) => setIsScrollMoved((event.target as HTMLElement).scrollTop !== 0);
+  const handleOnScroll = () => {
+    setIsScrollMoved((scrollContainerRef.current as HTMLElement).scrollTop !== 0);
+  };
 
   const handleClickScrollAnchorButton = () => {
     scrollToTop(scrollContainerRef);

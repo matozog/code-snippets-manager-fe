@@ -34,6 +34,7 @@ interface ISnippetCardContentProps {
   onClickReadMoreButton?: (codeSnippet: ICodeSnippet | null) => void;
   withReadmore?: boolean;
   editorStyles?: CSSProperties;
+  onClickCopySnippet?: (content: string) => void;
 }
 
 const SnippetCardContent: FC<ISnippetCardContentProps> = ({
@@ -41,6 +42,7 @@ const SnippetCardContent: FC<ISnippetCardContentProps> = ({
   onClickReadMoreButton,
   withReadmore = false,
   editorStyles,
+  onClickCopySnippet,
 }) => {
   const contentRef: Ref<HTMLTextAreaElement | undefined> = useRef();
   const tagsRef: MutableRefObject<HTMLDivElement | undefined> = useRef();
@@ -79,13 +81,13 @@ const SnippetCardContent: FC<ISnippetCardContentProps> = ({
               />
             </SnippetImageContainer>
           )}
-          <SnippetDescription>
+          <SnippetDescription isImage={!!codeSnippet?.img}>
             <SnippetTitleContainer>
               <SnippetTitle>{name}</SnippetTitle>
               {!isMobile && (
                 <SnippetActionContainer>
                   <EditIconButton />
-                  <CopySnippetButton />
+                  <CopySnippetButton onClick={() => onClickCopySnippet?.(content || '')} />
                 </SnippetActionContainer>
               )}
             </SnippetTitleContainer>
@@ -124,7 +126,15 @@ const SnippetCardContent: FC<ISnippetCardContentProps> = ({
             <MuiChip key={tag.name} name={`# ${tag.name}`} />
           ))}
         </TagsChipContainer>
-        {isMobile && <OptionsButton isOpen />}
+        {isMobile && (
+          <OptionsButton
+            isOpen
+            menuItemList={[
+              { text: 'Copy', onClick: () => onClickCopySnippet?.(content || '') },
+              { text: 'Edit', onClick: () => undefined },
+            ]}
+          />
+        )}
       </TagsContainer>
     </SnippetCardContainer>
   );

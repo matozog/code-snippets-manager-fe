@@ -1,21 +1,32 @@
-import { FC, useState } from 'react';
+import { FC, MouseEvent, useState } from 'react';
 import { MoreInfoButton, StyledMenu } from './options-button.jss';
 
 import { MenuItem } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
-interface IOptionsButtonProps {
-  isOpen: boolean;
+export interface IMenuItem {
+  text: string;
+  onClick: () => void;
 }
 
-const OptionsButton: FC<IOptionsButtonProps> = () => {
+interface IOptionsButtonProps {
+  isOpen: boolean;
+  menuItemList: IMenuItem[];
+}
+
+const OptionsButton: FC<IOptionsButtonProps> = ({ menuItemList }) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const isOpen = Boolean(anchorEl);
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+  const handleClick = (event: MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleClickItem = (item: IMenuItem) => {
+    item.onClick();
+    handleClose();
   };
 
   return (
@@ -38,8 +49,11 @@ const OptionsButton: FC<IOptionsButtonProps> = () => {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={handleClose}>Edit</MenuItem>
-        <MenuItem onClick={handleClose}>Copy</MenuItem>
+        {menuItemList.map((item) => (
+          <MenuItem key={item.text} onClick={() => handleClickItem(item)}>
+            {item.text}
+          </MenuItem>
+        ))}
       </StyledMenu>
     </>
   );

@@ -23,6 +23,9 @@ export const StyledSearchBox = styled(TextField)(({ theme }) => ({
     [theme.breakpoints.down('md')]: {
       padding: `${theme.spacing(0.5)} ${theme.spacing(1)}`,
     },
+    '&:hover': {
+      cursor: 'pointer',
+    },
   },
 }));
 

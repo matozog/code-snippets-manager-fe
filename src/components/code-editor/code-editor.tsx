@@ -30,6 +30,7 @@ const CustomCodeEditor: FC<ICodeEditorProps> = forwardRef<HTMLTextAreaElement, I
           minHeight: '100px',
           fontSize: 15,
           height: '100%',
+          width: '100%',
           backgroundColor: '#f5f5f5',
           fontFamily: 'ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace',
           ...styles,

@@ -1,9 +1,10 @@
 import * as snippetDuck from 'src/store/reducers/snippets';
 
+import { FC, useContext } from 'react';
 import { IRootState, useAppSelector } from 'src/store/config/store';
 
-import { FC } from 'react';
 import { ICodeSnippet } from 'src/types/models';
+import { NotifyContext } from 'src/hooks/notifyContext';
 import SnippetCard from 'src/components/snippet-card/snippet-card';
 import { SnippetsListContainer } from './snippet-list.jss';
 
@@ -16,6 +17,13 @@ const SnippetsList: FC<ISnippetListProps> = ({ onClickSnippet }) => {
     snippetDuck.selectors.selectSortedAndFilteredSnippets({ ...root.snippetsData, ...root.snippetsFilters })
   );
 
+  const { setNotifyProperties } = useContext(NotifyContext);
+
+  const handleOnClickCopySnippet = (content: string) => {
+    navigator.clipboard.writeText(content);
+    setNotifyProperties({ isOpen: true, message: 'Coppied to clipboard!', type: 'success' });
+  };
+
   return (
     <SnippetsListContainer>
       {snippetsList.map((codeSnippet) => (
@@ -23,6 +31,7 @@ const SnippetsList: FC<ISnippetListProps> = ({ onClickSnippet }) => {
           key={codeSnippet.id}
           codeSnippet={codeSnippet}
           onClickReadMoreButton={onClickSnippet}
+          onClickCopySnippet={handleOnClickCopySnippet}
         ></SnippetCard>
       ))}
     </SnippetsListContainer>

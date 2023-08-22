@@ -12,11 +12,14 @@ export const SnippetCardContainer = styled(Box)(({ theme }) => ({
   height: `calc(100% - ${theme.spacing(3)})`,
 }));
 
-export const SnippetInfoContainer = styled(Box)(() => ({
+export const SnippetInfoContainer = styled(Box)(({ theme }) => ({
   width: '100%',
   height: '80%',
   display: 'flex',
   flexDirection: 'column',
+  [theme.breakpoints.up('sm')]: {
+    gap: theme.spacing(1),
+  },
 }));
 
 export const TagsContainer = styled(Box)(() => ({
@@ -30,11 +33,16 @@ export const SnippetImageContainer = styled(Box)(() => ({
   float: 'left',
 }));
 
-export const SnippetDescription = styled(Box)(() => ({
+export const SnippetDescription = styled(Box, {
+  shouldForwardProp: (prop) => prop !== 'isImage',
+})<{ isImage?: boolean }>(({ theme, isImage }) => ({
   height: '100%',
   width: '100%',
   display: 'flex',
   flexDirection: 'column',
+  [theme.breakpoints.up(400)]: {
+    width: isImage ? 'calc(100% - 120px)' : '100%',
+  },
 }));
 
 export const SnippetTitleContainer = styled(Box)(() => ({

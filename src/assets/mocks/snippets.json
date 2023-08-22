@@ -1,38 +1,38 @@
 [
   {
     "id": "id_0",
-    "name": "Error handler class",
+    "name": "Creating a contdown timer",
     "description": "Very nice description",
-    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur posuere libero non congue vestibulum. Integer mollis lorem id orci efficitur, at vestibulum turpis congue. Duis id vestibulum dui, non elementum metus. Sed rutrum urna quis nibh consequat, vitae efficitur est maximus. Maecenas quis dignissim urna, sit amet vehicula velit. Curabitur consequat laoreet justo, pellentesque condimentum nisl feugiat nec. Ut gravida purus sem, pulvinar vestibulum tortor venenatis in. Maecenas cursus, turpis ut interdum molestie, metus mauris porttitor quam, et ultrices turpis diam vitae ligula. Quisque nec elit id nunc posuere imperdiet eu a metus. Etiam ut vulputate diam, ut hendrerit orci. In hac habitasse platea dictumst. Fusce nulla risus, tempor non pharetra ut, tempor ac risus. Vivamus sapien sem, commodo vitae volutpat et, tincidunt quis lectus. Donec at ultrices risus. Donec lobortis rhoncus hendrerit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.",
+    "content": "function countdownTimer(minutes) { let seconds = minutes * 60; const countdown = setInterval(function() { seconds--; if (seconds < 0) { clearInterval(countdown); } else { console.log(seconds + \" seconds left\"); } }, 1000); }",
     "isFavourite": true,
-    "programmingLanguage": "Java",
-    "type": "class",
+    "programmingLanguage": "Javascript",
+    "type": "function",
     "addedFrom": "Home in Lublin",
     "addedDate": "2023-07-06",
     "img": "https://picsum.photos/200/300",
     "tags": [
       {
         "id": "id_tag_0",
-        "name": "Java",
+        "name": "Javascript",
         "addedDate": "2023-07-06"
       },
       {
         "id": "id_tag_1",
-        "name": "Class",
+        "name": "Function",
         "addedDate": "2023-07-06"
       },
       {
         "id": "id_tag_2",
-        "name": "Utils",
+        "name": "Counter",
         "addedDate": "2023-07-09"
       }
     ]
   },
   {
     "id": "id_1",
-    "name": "Scale images",
+    "name": "Merge two or more lists into a list of lists",
     "description": "Nice tool",
-    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu tortor quis risus mattis condimentum. Praesent et consectetur magna. Aenean nulla mi, iaculis et iaculis molestie, aliquam sed massa. Nulla ac eros venenatis, imperdiet diam ac, malesuada magna. Nam facilisis libero arcu, id maximus justo blandit nec. Pellentesque in dapibus purus.",
+    "content": "def merge(*args, missing_val = None): #missing_val will be used when one of the smaller lists is shorter tham the others. #Get the maximum length within the smaller lists. max_length = max([len(lst) for lst in args]) outList = [] for i in range(max_length): result.append([args[k][i] if i < len(args[k]) else missing_val for k in range(len(args))]) return outList",
     "isFavourite": false,
     "programmingLanguage": "Python",
     "type": "function",
@@ -55,8 +55,8 @@
   {
     "id": "id_2",
     "name": "Fibonacci function",
-    "description": "The best way to create fibonacci sequence",
-    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu tortor quis risus mattis condimentum. Praesent et consectetur magna. Aenean nulla mi, iaculis et iaculis molestie, aliquam sed massa. Nulla ac eros venenatis, imperdiet diam ac, malesuada magna. Nam facilisis libero arcu, id maximus justo blandit nec. Pellentesque in dapibus purus. Curabitur et imperdiet mauris. Sed id efficitur erat, nec varius orci. Duis eros nisi, condimentum ac accumsan ac, condimentum ac elit. Aliquam suscipit pellentesque nulla, et gravida sem sollicitudin vel. Maecenas sed pretium neque. Cras ex neque, rutrum a purus a, vestibulum ultricies tellus. Vivamus iaculis velit ipsum, eu porttitor erat rutrum vel. Praesent luctus ullamcorper risus, ut efficitur nunc rhoncus quis. Proin sit amet nunc ac sem iaculis viverra non vel est. Fusce sodales vehicula purus luctus venenatis. Sed lacinia pulvinar tellus, at scelerisque purus eleifend quis. Sed fermentum nibh risus, non tempor nulla lacinia bibendum. In commodo mauris venenatis odio malesuada tempus. Pellentesque faucibus volutpat dolor. Sed eget nunc ipsum. Praesent et diam at sapien efficitur hendrerit non et orci. Integer tristique elementum nisi, sit amet mollis velit dapibus vel. Nulla nec fringilla leo. Curabitur id tristique urna. Nulla quis suscipit magna. Nunc id tellus in justo tincidunt auctor id nec eros. Etiam vehicula erat vitae dui lacinia, nec vehicula erat finibus. Vestibulum ultrices magna et porta convallis. Cras sit amet molestie eros, sit amet imperdiet neque. Phasellus eleifend faucibus velit ac tincidunt. Vestibulum faucibus risus nulla, in posuere ipsum viverra sed. Nam nec tortor eget neque tempus aliquam.",
+    "description": "The best way (not exactly) to create fibonacci sequence",
+    "content": "// program to generate fibonacci series up to a certain number // take input from the user const number = parseInt(prompt('Enter a positive number: ')); let n1 = 0, n2 = 1, nextTerm; console.log('Fibonacci Series:'); console.log(n1); // print 0 console.log(n2); // print 1 nextTerm = n1 + n2; while (nextTerm <= number) { // print the next term console.log(nextTerm); n1 = n2; n2 = nextTerm; nextTerm = n1 + n2; }",
     "isFavourite": true,
     "programmingLanguage": "Javascript",
     "type": "function",
@@ -70,7 +70,7 @@
       },
       {
         "id": "id_tag_03",
-        "name": "Recursion",
+        "name": "Iterative Programming",
         "addedDate": "2023-07-06"
       }
     ]
