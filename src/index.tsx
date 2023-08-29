@@ -1,17 +1,18 @@
 import './index.css';
 
 import App from './App';
-import NotifyProvider from './hooks/notifyContext';
+import { Provider } from 'react-redux';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
+import store from './store/config/store';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
-    <NotifyProvider>
+    <Provider store={store}>
       <App />
-    </NotifyProvider>
+    </Provider>
   </React.StrictMode>
 );
 

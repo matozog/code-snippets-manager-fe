@@ -1,5 +1,5 @@
 export interface ICodeSnippet {
-  id?: string;
+  idSnippet?: string;
   name: string;
   description: string;
   content: string;

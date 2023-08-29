@@ -1,3 +1,4 @@
+import * as filtersDuck from 'src/store/reducers/filters';
 import * as snippetDuck from 'src/store/reducers/snippets';
 
 import { IRootState, useAppDispatch, useAppSelector } from 'src/store/config/store';
@@ -49,6 +50,10 @@ const HomePage = () => {
       scrollContainerRef?.current?.removeEventListener('scroll', handleOnScroll, true);
     };
   }, []);
+
+  useEffect(() => {
+    dispatch(filtersDuck.operations.updateFiltersData(snippets));
+  }, [snippets]);
 
   return (
     <>

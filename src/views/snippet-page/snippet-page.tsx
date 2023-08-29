@@ -28,13 +28,16 @@ const SnippetPage = () => {
 
   const handleOnClickSave = (values: ICodeSnippet) => {
     dispatch(
-      snippetDuck.operations.addNewSnippet({
-        ...values,
-        addedDate: new Date().toDateString(),
-        id: Date.now().toString(),
-      })
+      snippetDuck.operations.addNewSnippet(
+        {
+          ...values,
+          addedDate: new Date().toDateString(),
+          idSnippet: Date.now().toString(),
+          tags: values.tags.map((tag) => ({ ...tag, addedDate: Date.now().toString() })),
+        },
+        handleOnClickBackButton
+      )
     );
-    navigate('/');
   };
 
   const { formikProps } = useForm<ICodeSnippet>(defaultCodeSnippet, validationSchema, handleOnClickSave);

@@ -15,7 +15,7 @@ export default (
   state: ISnippetsState = initialState,
   action: ActionType<string, Record<string, unknown>, Record<string, unknown>, unknown>
 ): ISnippetsState => {
-  const { type, payload, meta } = action;
+  const { type, payload } = action;
 
   switch (type) {
     case REQUEST(types.FETCH_SNIPPETS):
@@ -35,11 +35,23 @@ export default (
         isLoading: false,
         error: 'Error during fetching snippets',
       };
-
-    case types.ADD_NEW_SNIPPET:
+    case REQUEST(types.ADD_NEW_SNIPPET):
       return {
         ...state,
-        snippets: [...state.snippets, meta?.data as unknown as ICodeSnippet],
+        isLoading: true,
+      };
+    case SUCCESS(types.ADD_NEW_SNIPPET): {
+      return {
+        ...state,
+        isLoading: false,
+        snippets: [...state.snippets, payload?.data as unknown as ICodeSnippet],
+      };
+    }
+    case FAILURE(types.ADD_NEW_SNIPPET):
+      return {
+        ...state,
+        isLoading: false,
+        error: 'Error during posting snippets',
       };
     default:
       return state;
