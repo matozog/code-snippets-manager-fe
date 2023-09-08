@@ -77,10 +77,8 @@ export default (
         isLoading: true,
       };
     case SUCCESS(types.UPDATE_SNIPPET): {
-      console.log(payload?.data);
       const editedSnippet = payload?.data as ICodeSnippet;
       const editedSnippetIndex = state.snippets.findIndex((snippet) => snippet.idSnippet === editedSnippet.idSnippet);
-      console.log(editedSnippetIndex, [...state.snippets].splice(editedSnippetIndex, 1, editedSnippet));
       return {
         ...state,
         isLoading: false,
