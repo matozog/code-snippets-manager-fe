@@ -56,4 +56,11 @@ const selectSortedAndFilteredSnippets = createSelector(
     sortRecords(filteredSnippets, sortBy, sortAsc)
 );
 
-export { selectSortedAndFilteredSnippets };
+const selectCodeSnippetById = createSelector(
+  [getCodeSnippets, (state, id) => id],
+  (codeSnippets, id): ICodeSnippet | undefined => {
+    return codeSnippets?.find((snippet) => snippet.idSnippet?.toString() === id);
+  }
+);
+
+export { selectSortedAndFilteredSnippets, selectCodeSnippetById };

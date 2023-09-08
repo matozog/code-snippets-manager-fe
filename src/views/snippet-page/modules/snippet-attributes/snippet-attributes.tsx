@@ -48,7 +48,7 @@ const SnippetAttributes = <K extends FormikValues>({ formikProps }: ISnippetAttr
           <MuiAutocomplete
             label="Programming language"
             id="programmingLanguage"
-            value={programmingLanguage}
+            value={programmingLanguage || 'js'}
             onChange={handleChangeProgrammingLanguage}
             options={refractor.listLanguages()}
           />

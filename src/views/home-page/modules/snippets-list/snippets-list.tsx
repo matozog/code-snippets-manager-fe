@@ -1,6 +1,7 @@
+import * as commonDuck from 'src/store/reducers/common';
 import * as snippetDuck from 'src/store/reducers/snippets';
 
-import { IRootState, useAppSelector } from 'src/store/config/store';
+import { IRootState, useAppDispatch, useAppSelector } from 'src/store/config/store';
 
 import { FC } from 'react';
 import { ICodeSnippet } from 'src/types/models';
@@ -16,13 +17,23 @@ const SnippetsList: FC<ISnippetListProps> = ({ onClickSnippet }) => {
     snippetDuck.selectors.selectSortedAndFilteredSnippets({ ...root.snippetsData, ...root.snippetsFilters })
   );
 
+  const dispatch = useAppDispatch();
+
+  const handleOnClickCopySnippet = (content: string) => {
+    navigator.clipboard.writeText(content);
+    dispatch(
+      commonDuck.operations.setNotifyProperties({ isOpen: true, message: 'Coppied to clipboard!', type: 'success' })
+    );
+  };
+
   return (
     <SnippetsListContainer>
       {snippetsList.map((codeSnippet) => (
         <SnippetCard
-          key={codeSnippet.id}
+          key={codeSnippet.idSnippet}
           codeSnippet={codeSnippet}
           onClickReadMoreButton={onClickSnippet}
+          onClickCopySnippet={handleOnClickCopySnippet}
         ></SnippetCard>
       ))}
     </SnippetsListContainer>

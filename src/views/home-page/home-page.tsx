@@ -1,3 +1,4 @@
+import * as filtersDuck from 'src/store/reducers/filters';
 import * as snippetDuck from 'src/store/reducers/snippets';
 
 import { IRootState, useAppDispatch, useAppSelector } from 'src/store/config/store';
@@ -28,7 +29,9 @@ const HomePage = () => {
 
   const isLoading = useAppSelector((root: IRootState) => root.snippetsData.isLoading);
 
-  const handleOnScroll = (event: Event) => setIsScrollMoved((event.target as HTMLElement).scrollTop !== 0);
+  const handleOnScroll = () => {
+    setIsScrollMoved((scrollContainerRef.current as HTMLElement).scrollTop !== 0);
+  };
 
   const handleClickScrollAnchorButton = () => {
     scrollToTop(scrollContainerRef);
@@ -39,7 +42,7 @@ const HomePage = () => {
   const handleCloseModal = () => setSelectedSnippet(null);
 
   useEffect(() => {
-    !snippets.length && dispatch(snippetDuck.operations.fetchSnippets());
+    dispatch(snippetDuck.operations.fetchSnippets());
 
     scrollContainerRef?.current?.addEventListener('scroll', handleOnScroll, true);
 
@@ -47,6 +50,10 @@ const HomePage = () => {
       scrollContainerRef?.current?.removeEventListener('scroll', handleOnScroll, true);
     };
   }, []);
+
+  useEffect(() => {
+    dispatch(filtersDuck.operations.updateFiltersData(snippets));
+  }, [snippets]);
 
   return (
     <>

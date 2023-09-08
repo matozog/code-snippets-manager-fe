@@ -4,11 +4,13 @@ Application to store and manage code snippets. The destination can be different 
 
 ## Current status
 
-| Stage                               | Status             |
-| ----------------------------------- | ------------------ |
-| First deployment client application | :heavy_check_mark: |
-| Integration with BE                 | :x:                |
-| Integration with VSC                | :x:                |
+| Stage                               | Status               |
+| ----------------------------------- | -------------------- |
+| First deployment client application | :heavy_check_mark:   |
+| Integration with BE                 | :heavy_check_mark:\* |
+| Integration with VSC                | :x:                  |
+
+Integration with BE and database partly is ready. Web service is running on render platform: https://render.com/. It is running on unpaid server version so after some time inactivity it is suspended. First request to API impact service restart and after some time it is up.
 
 ## Available Scripts
 

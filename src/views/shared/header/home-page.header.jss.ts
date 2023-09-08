@@ -11,15 +11,15 @@ export const HeaderContainer = styled(Box)(({ theme }) => ({
   color: '#fff',
   height: '70px',
   width: '100%',
-  '&:hover': {
-    cursor: 'pointer',
-  },
 }));
 
 export const StyledLogo = styled(Box)(({ theme }) => ({
   marginRight: `${theme.spacing(1)}`,
   fontSize: '20px',
   padding: `${theme.spacing(2)} ${theme.spacing(2.5)}`,
+  '&:hover': {
+    cursor: 'pointer',
+  },
 }));
 
 export const ActionContainer = styled(Box)(({ theme }) => ({

@@ -28,12 +28,14 @@ import MuiChip from 'src/components/chip/chip';
 import OptionsButton from 'src/components/buttons/options-button/options-button';
 import ReadMoreButton from 'src/components/buttons/read-more/read-more';
 import { useIsOverflow } from 'src/hooks/useOverflow';
+import { useNavigate } from 'react-router-dom';
 
 interface ISnippetCardContentProps {
   codeSnippet: ICodeSnippet | null;
   onClickReadMoreButton?: (codeSnippet: ICodeSnippet | null) => void;
   withReadmore?: boolean;
   editorStyles?: CSSProperties;
+  onClickCopySnippet?: (content: string) => void;
 }
 
 const SnippetCardContent: FC<ISnippetCardContentProps> = ({
@@ -41,12 +43,14 @@ const SnippetCardContent: FC<ISnippetCardContentProps> = ({
   onClickReadMoreButton,
   withReadmore = false,
   editorStyles,
+  onClickCopySnippet,
 }) => {
   const contentRef: Ref<HTMLTextAreaElement | undefined> = useRef();
   const tagsRef: MutableRefObject<HTMLDivElement | undefined> = useRef();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const isLowResolution = useMediaQuery(theme.breakpoints.down(400));
+  const navigate = useNavigate();
 
   const { isOverflow: isOverflowContent } = useIsOverflow(contentRef);
   const { isHorizontalOverflow: isOverflowTags } = useIsOverflow(tagsRef);
@@ -57,11 +61,11 @@ const SnippetCardContent: FC<ISnippetCardContentProps> = ({
 
   if (!codeSnippet) return null;
 
-  const { programmingLanguage, type, name, content, tags, img } = codeSnippet || {};
+  const { programmingLanguage, type, name, content, tags, img, idSnippet } = codeSnippet || {};
 
   return (
     <SnippetCardContainer>
-      <SnippetInfoContainer>
+      <SnippetInfoContainer withTags={tags.length > 0}>
         <SnippetProperties>
           {codeSnippet?.img && !isLowResolution && (
             <SnippetImageContainer>
@@ -79,13 +83,21 @@ const SnippetCardContent: FC<ISnippetCardContentProps> = ({
               />
             </SnippetImageContainer>
           )}
-          <SnippetDescription>
+          <SnippetDescription isImage={!!codeSnippet?.img}>
             <SnippetTitleContainer>
               <SnippetTitle>{name}</SnippetTitle>
-              {!isMobile && (
+              {isMobile ? (
+                <OptionsButton
+                  isOpen
+                  menuItemList={[
+                    { text: 'Copy', onClick: () => onClickCopySnippet?.(content || '') },
+                    { text: 'Edit', onClick: () => navigate(`edit-snippet/${idSnippet}`) },
+                  ]}
+                />
+              ) : (
                 <SnippetActionContainer>
-                  <EditIconButton />
-                  <CopySnippetButton />
+                  <EditIconButton onClick={() => navigate(`edit-snippet/${idSnippet}`)} />
+                  <CopySnippetButton onClick={() => onClickCopySnippet?.(content || '')} />
                 </SnippetActionContainer>
               )}
             </SnippetTitleContainer>
@@ -117,15 +129,18 @@ const SnippetCardContent: FC<ISnippetCardContentProps> = ({
           />
         </SnippetCode>
       </SnippetInfoContainer>
-      <CustomDivider />
-      <TagsContainer ref={tagsRef}>
-        <TagsChipContainer isOverflow={isOverflowTags}>
-          {tags.map((tag) => (
-            <MuiChip key={tag.name} name={`# ${tag.name}`} />
-          ))}
-        </TagsChipContainer>
-        {isMobile && <OptionsButton isOpen />}
-      </TagsContainer>
+      {tags.length > 0 && (
+        <>
+          <CustomDivider />
+          <TagsContainer ref={tagsRef}>
+            <TagsChipContainer isOverflow={isOverflowTags}>
+              {tags.map((tag) => (
+                <MuiChip key={tag.name} name={`# ${tag.name}`} />
+              ))}
+            </TagsChipContainer>
+          </TagsContainer>
+        </>
+      )}
     </SnippetCardContainer>
   );
 };
