@@ -12,6 +12,7 @@ export const useForm = <T extends FormikValues>(
   const formik = useFormik({
     initialValues: defaultValue,
     validationSchema: validationSchema,
+    enableReinitialize: true,
     onSubmit: (values) => {
       onSubmit(values);
     },

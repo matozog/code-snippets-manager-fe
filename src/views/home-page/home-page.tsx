@@ -42,7 +42,7 @@ const HomePage = () => {
   const handleCloseModal = () => setSelectedSnippet(null);
 
   useEffect(() => {
-    !snippets.length && dispatch(snippetDuck.operations.fetchSnippets());
+    dispatch(snippetDuck.operations.fetchSnippets());
 
     scrollContainerRef?.current?.addEventListener('scroll', handleOnScroll, true);
 

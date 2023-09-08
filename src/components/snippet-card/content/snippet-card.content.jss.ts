@@ -12,9 +12,11 @@ export const SnippetCardContainer = styled(Box)(({ theme }) => ({
   height: `calc(100% - ${theme.spacing(3)})`,
 }));
 
-export const SnippetInfoContainer = styled(Box)(({ theme }) => ({
+export const SnippetInfoContainer = styled(Box, {
+  shouldForwardProp: (prop) => prop !== 'withTags',
+})<{ withTags: boolean }>(({ theme, withTags }) => ({
   width: '100%',
-  height: '80%',
+  height: withTags ? '80%' : `calc(100% - ${theme.spacing(2)})`,
   display: 'flex',
   flexDirection: 'column',
   [theme.breakpoints.up('sm')]: {
