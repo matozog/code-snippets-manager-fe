@@ -1,17 +1,16 @@
-import { Box, styled } from '@mui/material';
+import { Box } from '@mui/material';
+import { styled } from '@mui/material/styles';
 
-export const ModalDialogContent = styled(Box)(({ theme }) => ({
+export const ModalContainer = styled(Box)(({ theme }) => ({
   position: 'absolute',
   top: '50%',
   left: '50%',
+  maxHeight: '90%',
   transform: 'translate(-50%, -50%)',
-  width: '90%',
-  height: '70%',
   overflow: 'hidden',
-  [theme.breakpoints.up('sm')]: {
-    width: '70%',
-  },
   backgroundColor: theme.palette.common.white,
-  border: '2px solid #000',
   p: 4,
+  [theme.breakpoints.down('sm')]: {
+    width: '100%',
+  },
 }));

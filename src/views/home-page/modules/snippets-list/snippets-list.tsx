@@ -1,30 +1,25 @@
-import * as commonDuck from 'src/store/reducers/common';
 import * as snippetDuck from 'src/store/reducers/snippets';
 
-import { IRootState, useAppDispatch, useAppSelector } from 'src/store/config/store';
+import { FC, useState } from 'react';
+import { IRootState, useAppSelector } from 'src/store/config/store';
 
-import { FC } from 'react';
+import { Box } from '@mui/material';
 import { ICodeSnippet } from 'src/types/models';
+import ModalDialog from 'src/components/modal-dialog/modal-dialog';
 import SnippetCard from 'src/components/snippet-card/snippet-card';
 import { SnippetsListContainer } from './snippet-list.jss';
 
 interface ISnippetListProps {
   onClickSnippet?: (codeSnippet: ICodeSnippet | null) => void;
+  onClickCopySnippet?: (content: string) => void;
+  onClickRemoveSnippet?: (snippetId?: string) => void;
 }
 
-const SnippetsList: FC<ISnippetListProps> = ({ onClickSnippet }) => {
+const SnippetsList: FC<ISnippetListProps> = ({ onClickSnippet, onClickRemoveSnippet, onClickCopySnippet }) => {
+  const [isOpenModal, setOpenModal] = useState(false);
   const snippetsList = useAppSelector((root: IRootState) =>
     snippetDuck.selectors.selectSortedAndFilteredSnippets({ ...root.snippetsData, ...root.snippetsFilters })
   );
-
-  const dispatch = useAppDispatch();
-
-  const handleOnClickCopySnippet = (content: string) => {
-    navigator.clipboard.writeText(content);
-    dispatch(
-      commonDuck.operations.setNotifyProperties({ isOpen: true, message: 'Coppied to clipboard!', type: 'success' })
-    );
-  };
 
   return (
     <SnippetsListContainer>
@@ -33,9 +28,11 @@ const SnippetsList: FC<ISnippetListProps> = ({ onClickSnippet }) => {
           key={codeSnippet.idSnippet}
           codeSnippet={codeSnippet}
           onClickReadMoreButton={onClickSnippet}
-          onClickCopySnippet={handleOnClickCopySnippet}
-        ></SnippetCard>
+          onClickCopySnippet={onClickCopySnippet}
+          onClickRemoveSnippet={onClickRemoveSnippet}
+        />
       ))}
+      <ModalDialog isOpen={isOpenModal} content={<Box>Are you sure?</Box>} handleClose={() => setOpenModal(false)} />
     </SnippetsListContainer>
   );
 };

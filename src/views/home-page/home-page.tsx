@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
+import * as commonDuck from 'src/store/reducers/common';
 import * as filtersDuck from 'src/store/reducers/filters';
 import * as snippetDuck from 'src/store/reducers/snippets';
 
@@ -11,13 +14,18 @@ import { ICodeSnippet } from 'src/types/models';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import ModalDialog from 'src/components/modal-dialog/modal-dialog';
 import MuiBackdrop from 'src/components/backdrop/mui-backdrop';
+import QuestionModal from 'src/components/modal-dialog/question-modal/question-modal';
 import SnippetCardContent from 'src/components/snippet-card/content/snippet-card.content';
+import SnippetModal from 'src/components/modal-dialog/snippet-modal/snippet-modal';
 import SnippetsFilters from './modules/snippets-filters/snippets-filters';
 import SnippetsList from './modules/snippets-list/snippets-list';
 import { scrollToTop } from 'src/utils/utils';
 
 const HomePage = () => {
-  // const [isModalOpen, setModalOpen] = useState(false);
+  const [removeSnippetModalStatus, setRemoveSnippetModalStatus] = useState<{
+    isOpen: boolean;
+    idSnippetToRemove: null | string;
+  }>({ isOpen: false, idSnippetToRemove: null });
   const [selectedSnippet, setSelectedSnippet] = useState<ICodeSnippet | null>(null);
   const [isScrollMoved, setIsScrollMoved] = useState<boolean>(false);
   const scrollContainerRef = useRef<HTMLElement>();
@@ -39,7 +47,20 @@ const HomePage = () => {
 
   const handleOnClickSnippet = (codeSnippet: ICodeSnippet | null) => setSelectedSnippet(codeSnippet);
 
-  const handleCloseModal = () => setSelectedSnippet(null);
+  const handleCloseSnippetModal = () => setSelectedSnippet(null);
+
+  const handleCloseQuestionModal = () => setRemoveSnippetModalStatus({ isOpen: false, idSnippetToRemove: null });
+
+  const handleOnClickCopySnippet = (content: string) => {
+    navigator.clipboard.writeText(content);
+    dispatch(
+      commonDuck.operations.setNotifyProperties({ isOpen: true, message: 'Coppied to clipboard!', type: 'success' })
+    );
+  };
+
+  const handleOnClickRemoveSnippet = (snippetId?: string) => {
+    setRemoveSnippetModalStatus({ isOpen: true, idSnippetToRemove: snippetId || null });
+  };
 
   useEffect(() => {
     dispatch(snippetDuck.operations.fetchSnippets());
@@ -59,7 +80,11 @@ const HomePage = () => {
     <>
       <HomePageContainer ref={scrollContainerRef}>
         <SnippetsFilters scrollContainerRef={scrollContainerRef} />
-        <SnippetsList onClickSnippet={handleOnClickSnippet} />
+        <SnippetsList
+          onClickSnippet={handleOnClickSnippet}
+          onClickCopySnippet={handleOnClickCopySnippet}
+          onClickRemoveSnippet={handleOnClickRemoveSnippet}
+        />
       </HomePageContainer>
       {isMobile && isScrollMoved && (
         <FloatingButton
@@ -71,9 +96,35 @@ const HomePage = () => {
         </FloatingButton>
       )}
       <ModalDialog
-        content={<SnippetCardContent codeSnippet={selectedSnippet} editorStyles={{ overflow: 'auto' }} />}
+        content={
+          <SnippetModal>
+            <SnippetCardContent
+              codeSnippet={selectedSnippet}
+              editorStyles={{ overflow: 'auto' }}
+              onClickCopySnippet={handleOnClickCopySnippet}
+              onClickRemoveSnippet={handleOnClickRemoveSnippet}
+            />
+          </SnippetModal>
+        }
+        style={{ height: '80%' }}
         isOpen={!!selectedSnippet}
-        handleClose={handleCloseModal}
+        handleClose={handleCloseSnippetModal}
+      />
+      <ModalDialog
+        content={
+          <QuestionModal
+            content="Are you sure you want to remove snippet?"
+            onClickCancel={() => setRemoveSnippetModalStatus({ isOpen: false, idSnippetToRemove: null })}
+            onClickOk={() => {
+              removeSnippetModalStatus.idSnippetToRemove &&
+                dispatch(snippetDuck.operations.removeSnippet(removeSnippetModalStatus.idSnippetToRemove));
+              handleCloseQuestionModal();
+            }}
+          />
+        }
+        style={{ height: 'auto' }}
+        isOpen={removeSnippetModalStatus.isOpen}
+        handleClose={handleCloseQuestionModal}
       />
       <MuiBackdrop isOpen={isLoading} />
     </>

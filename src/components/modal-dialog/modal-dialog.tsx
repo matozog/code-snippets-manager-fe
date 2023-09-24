@@ -1,17 +1,19 @@
-import { FC } from 'react';
+import { CSSProperties, FC } from 'react';
+
 import { Modal } from '@mui/material';
-import { ModalDialogContent } from './modal-dialog.jss';
+import { ModalContainer } from './modal-dialog.jss';
 
 interface IModalDialogProps {
   content: JSX.Element;
   isOpen: boolean;
   handleClose: () => void;
+  style?: CSSProperties;
 }
 
-const ModalDialog: FC<IModalDialogProps> = ({ isOpen, content, handleClose }) => {
+const ModalDialog: FC<IModalDialogProps> = ({ isOpen, content, handleClose, style }) => {
   return (
     <Modal open={isOpen} onClose={handleClose}>
-      <ModalDialogContent>{content}</ModalDialogContent>
+      <ModalContainer style={style}>{content}</ModalContainer>
     </Modal>
   );
 };

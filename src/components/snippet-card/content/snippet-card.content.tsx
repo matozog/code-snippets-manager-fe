@@ -3,6 +3,7 @@ import { CSSProperties, FC, MutableRefObject, Ref, useRef } from 'react';
 import {
   CopySnippetButton,
   EditIconButton,
+  RemoveSnippetButton,
   SnippetActionContainer,
   SnippetCardContainer,
   SnippetCode,
@@ -36,6 +37,7 @@ interface ISnippetCardContentProps {
   withReadmore?: boolean;
   editorStyles?: CSSProperties;
   onClickCopySnippet?: (content: string) => void;
+  onClickRemoveSnippet?: (snippetId?: string) => void;
 }
 
 const SnippetCardContent: FC<ISnippetCardContentProps> = ({
@@ -44,6 +46,7 @@ const SnippetCardContent: FC<ISnippetCardContentProps> = ({
   withReadmore = false,
   editorStyles,
   onClickCopySnippet,
+  onClickRemoveSnippet,
 }) => {
   const contentRef: Ref<HTMLTextAreaElement | undefined> = useRef();
   const tagsRef: MutableRefObject<HTMLDivElement | undefined> = useRef();
@@ -92,12 +95,14 @@ const SnippetCardContent: FC<ISnippetCardContentProps> = ({
                   menuItemList={[
                     { text: 'Copy', onClick: () => onClickCopySnippet?.(content || '') },
                     { text: 'Edit', onClick: () => navigate(`edit-snippet/${idSnippet}`) },
+                    { text: 'Delete', onClick: () => onClickRemoveSnippet?.(idSnippet) },
                   ]}
                 />
               ) : (
                 <SnippetActionContainer>
-                  <EditIconButton onClick={() => navigate(`edit-snippet/${idSnippet}`)} />
                   <CopySnippetButton onClick={() => onClickCopySnippet?.(content || '')} />
+                  <EditIconButton onClick={() => navigate(`edit-snippet/${idSnippet}`)} />
+                  <RemoveSnippetButton onClick={() => onClickRemoveSnippet?.(idSnippet)} />
                 </SnippetActionContainer>
               )}
             </SnippetTitleContainer>

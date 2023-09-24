@@ -16,7 +16,7 @@ export default (
   state: ISnippetsState = initialState,
   action: ActionType<string, Record<string, unknown>, Record<string, unknown>, unknown>
 ): ISnippetsState => {
-  const { type, payload } = action;
+  const { type, payload, meta } = action;
 
   switch (type) {
     case REQUEST(types.FETCH_SNIPPETS):
@@ -70,6 +70,24 @@ export default (
         ...state,
         isLoading: false,
         error: 'Error during posting snippets',
+      };
+    case REQUEST(types.REMOVE_SNIPPET):
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case SUCCESS(types.REMOVE_SNIPPET): {
+      return {
+        ...state,
+        isLoading: false,
+        snippets: state.snippets.filter((snippet) => snippet.idSnippet !== meta?.data),
+      };
+    }
+    case FAILURE(types.REMOVE_SNIPPET):
+      return {
+        ...state,
+        isLoading: false,
+        error: 'Error during removing snippets',
       };
     case REQUEST(types.UPDATE_SNIPPET):
       return {
