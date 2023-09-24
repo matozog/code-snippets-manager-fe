@@ -8,9 +8,15 @@ interface ISnippetCardProps {
   codeSnippet: ICodeSnippet;
   onClickReadMoreButton?: (codeSnippet: ICodeSnippet | null) => void;
   onClickCopySnippet?: (content: string) => void;
+  onClickRemoveSnippet?: (snippetId?: string) => void;
 }
 
-const SnippetCard: FC<ISnippetCardProps> = ({ codeSnippet, onClickReadMoreButton, onClickCopySnippet }) => {
+const SnippetCard: FC<ISnippetCardProps> = ({
+  codeSnippet,
+  onClickReadMoreButton,
+  onClickCopySnippet,
+  onClickRemoveSnippet,
+}) => {
   return (
     <SnippetCardWrapper>
       <MuiPaper elevation={8} style={{ height: 'inherit' }}>
@@ -19,6 +25,7 @@ const SnippetCard: FC<ISnippetCardProps> = ({ codeSnippet, onClickReadMoreButton
           onClickReadMoreButton={onClickReadMoreButton}
           withReadmore
           onClickCopySnippet={onClickCopySnippet}
+          onClickRemoveSnippet={onClickRemoveSnippet}
         />
       </MuiPaper>
     </SnippetCardWrapper>

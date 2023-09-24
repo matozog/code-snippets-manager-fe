@@ -8,4 +8,5 @@ export const HTTPService = {
     requestAxios.post(url, body, options),
   put: (url: string, body: unknown, options?: Record<string, string>): Promise<any> =>
     requestAxios.put(url, body, options),
+  delete: (url: string): Promise<any> => requestAxios.delete(url),
 };
