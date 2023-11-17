@@ -1,6 +1,6 @@
 # Snippets manager application
 
-Application to store and manage code snippets. The destination can be different but mainly it is writting for developers.
+Application to store and manage code snippets. The destination can be different but mainly it is writting for developers. Link to application: https://matozog.github.io/code-snippets-manager-fe/
 
 ## Current status
 
