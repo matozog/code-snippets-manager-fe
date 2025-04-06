@@ -31,36 +31,36 @@ const selectFilteredSnippets = createSelector(
   ],
   (
     snippets: Array<ICodeSnippet>,
-    programmingLanguage: Array<string>,
+    programmingLanguages: Array<string>,
     types: Array<string>,
     creationPlaces: Array<string>,
-    addedAfter: Dayjs | null,
-    addedBefore: Dayjs | null,
+    addedAfter: Dayjs | undefined,
+    addedBefore: Dayjs | undefined,
     favourite: boolean,
-    keyword: string
+    keyword: string,
   ): Array<ICodeSnippet> =>
     filterSnippets(
       filterByKeyword(snippets, keyword),
-      programmingLanguage,
+      programmingLanguages,
       types,
       creationPlaces,
       addedAfter,
       addedBefore,
-      favourite
-    )
+      favourite,
+    ),
 );
 
 const selectSortedAndFilteredSnippets = createSelector(
   [selectFilteredSnippets, getSortBy, getSortAsc],
   (filteredSnippets: Array<ICodeSnippet>, sortBy: SortByType, sortAsc: boolean): Array<ICodeSnippet> =>
-    sortRecords(filteredSnippets, sortBy, sortAsc)
+    sortRecords(filteredSnippets, sortBy, sortAsc),
 );
 
 const selectCodeSnippetById = createSelector(
   [getCodeSnippets, (state, id) => id],
   (codeSnippets, id): ICodeSnippet | undefined => {
     return codeSnippets?.find((snippet) => snippet.idSnippet?.toString() === id);
-  }
+  },
 );
 
 export { selectSortedAndFilteredSnippets, selectCodeSnippetById };

@@ -34,7 +34,7 @@ const fetchSnippetsData = () => {
           error,
         });
         dispatch(
-          commonDuck.operations.setNotifyProperties({ isOpen: true, type: 'error', message: 'Something gone wrong!' })
+          commonDuck.operations.setNotifyProperties({ isOpen: true, type: 'error', message: 'Something gone wrong!' }),
         );
       });
 };
@@ -68,7 +68,7 @@ const fetchSnippetData = (id: string) => {
           error,
         });
         dispatch(
-          commonDuck.operations.setNotifyProperties({ isOpen: true, type: 'error', message: 'Something gone wrong!' })
+          commonDuck.operations.setNotifyProperties({ isOpen: true, type: 'error', message: 'Something gone wrong!' }),
         );
       });
 };
@@ -96,7 +96,7 @@ const postNewSnippet = (newSnippet: ICodeSnippet, successAction: () => void) => 
           },
         });
         dispatch(
-          commonDuck.operations.setNotifyProperties({ isOpen: true, type: 'success', message: 'Added new snippet!' })
+          commonDuck.operations.setNotifyProperties({ isOpen: true, type: 'success', message: 'Added new snippet!' }),
         );
         successAction();
       })
@@ -107,7 +107,7 @@ const postNewSnippet = (newSnippet: ICodeSnippet, successAction: () => void) => 
           error,
         });
         dispatch(
-          commonDuck.operations.setNotifyProperties({ isOpen: true, type: 'error', message: 'Something gone wrong!' })
+          commonDuck.operations.setNotifyProperties({ isOpen: true, type: 'error', message: 'Something gone wrong!' }),
         );
       });
 };
@@ -135,7 +135,7 @@ const updateSnippetData = (newSnippet: ICodeSnippet, successAction: () => void, 
           },
         });
         dispatch(
-          commonDuck.operations.setNotifyProperties({ isOpen: true, type: 'success', message: 'Updated snippet!' })
+          commonDuck.operations.setNotifyProperties({ isOpen: true, type: 'success', message: 'Updated snippet!' }),
         );
         successAction();
       })
@@ -146,7 +146,7 @@ const updateSnippetData = (newSnippet: ICodeSnippet, successAction: () => void, 
           error,
         });
         dispatch(
-          commonDuck.operations.setNotifyProperties({ isOpen: true, type: 'error', message: 'Something gone wrong!' })
+          commonDuck.operations.setNotifyProperties({ isOpen: true, type: 'error', message: 'Something gone wrong!' }),
         );
       });
 };
@@ -178,7 +178,7 @@ const removeSnippetData = (snippetId: string) => {
           },
         });
         dispatch(
-          commonDuck.operations.setNotifyProperties({ isOpen: true, type: 'success', message: 'Removed snippet!' })
+          commonDuck.operations.setNotifyProperties({ isOpen: true, type: 'success', message: 'Removed snippet!' }),
         );
       })
       .catch((error) => {
@@ -188,7 +188,7 @@ const removeSnippetData = (snippetId: string) => {
           error,
         });
         dispatch(
-          commonDuck.operations.setNotifyProperties({ isOpen: true, type: 'error', message: 'Something gone wrong!' })
+          commonDuck.operations.setNotifyProperties({ isOpen: true, type: 'error', message: 'Something gone wrong!' }),
         );
       });
 };

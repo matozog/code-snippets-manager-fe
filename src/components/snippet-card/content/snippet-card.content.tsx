@@ -1,5 +1,5 @@
 import { Box, useMediaQuery, useTheme } from '@mui/material';
-import { CSSProperties, FC, MutableRefObject, Ref, useRef } from 'react';
+import { CSSProperties, FC, MutableRefObject, useRef } from 'react';
 import {
   CopySnippetButton,
   EditIconButton,
@@ -48,7 +48,7 @@ const SnippetCardContent: FC<ISnippetCardContentProps> = ({
   onClickCopySnippet,
   onClickRemoveSnippet,
 }) => {
-  const contentRef: Ref<HTMLTextAreaElement | undefined> = useRef();
+  const contentRef: MutableRefObject<HTMLTextAreaElement | null | undefined> = useRef();
   const tagsRef: MutableRefObject<HTMLDivElement | undefined> = useRef();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));

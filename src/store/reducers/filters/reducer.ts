@@ -17,8 +17,8 @@ const initialState = {
   programmingLanguage: [],
   type: [],
   creationPlace: [],
-  addedBefore: null,
-  addedAfter: null,
+  addedBefore: undefined,
+  addedAfter: undefined,
   favourite: false,
   isLoading: false,
 };
@@ -27,7 +27,7 @@ export type IFiltersState = Readonly<typeof initialState>;
 
 export default (
   state: IFiltersState = initialState,
-  action: ActionType<string, Record<string, unknown>, any, unknown>
+  action: ActionType<string, Record<string, unknown>, { data: unknown }, unknown>,
 ): IFiltersState => {
   const { type, meta } = action;
 
@@ -35,7 +35,7 @@ export default (
     case types.UPDATE_FILTERS_DATA:
       return { ...state, filtersData: meta?.data as IFiltersData };
     case types.CHANGE_FILTERS_FIELD: {
-      const { fieldKey, value } = meta?.data || {};
+      const { fieldKey, value } = (meta?.data as { fieldKey: string; value: string | string[] }) || {};
       return {
         ...state,
         [fieldKey]: value,
@@ -47,8 +47,8 @@ export default (
         programmingLanguage: [],
         type: [],
         creationPlace: [],
-        addedBefore: null,
-        addedAfter: null,
+        addedBefore: undefined,
+        addedAfter: undefined,
         favourite: false,
         sortBy: '',
         sortAsc: true,

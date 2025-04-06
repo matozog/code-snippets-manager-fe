@@ -17,8 +17,9 @@ interface ISnippetListProps {
 
 const SnippetsList: FC<ISnippetListProps> = ({ onClickSnippet, onClickRemoveSnippet, onClickCopySnippet }) => {
   const [isOpenModal, setOpenModal] = useState(false);
+
   const snippetsList = useAppSelector((root: IRootState) =>
-    snippetDuck.selectors.selectSortedAndFilteredSnippets({ ...root.snippetsData, ...root.snippetsFilters })
+    snippetDuck.selectors.selectSortedAndFilteredSnippets({ ...root.snippetsData, ...root.snippetsFilters }),
   );
 
   return (
