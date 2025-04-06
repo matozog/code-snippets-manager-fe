@@ -36,7 +36,7 @@ const SnippetPage: FC<ISnippetPageProps> = ({ codeSnippet, onClickSave }) => {
   const { formikProps } = useForm<ICodeSnippet>(
     codeSnippet ? { ...codeSnippet } : defaultCodeSnippet,
     validationSchema,
-    handleOnClickSave
+    handleOnClickSave,
   );
   const { handleSubmit } = formikProps || {};
 

@@ -14,7 +14,7 @@ export type ISnippetsState = Readonly<typeof initialState>;
 
 export default (
   state: ISnippetsState = initialState,
-  action: ActionType<string, Record<string, unknown>, Record<string, unknown>, unknown>
+  action: ActionType<string, Record<string, unknown>, Record<string, unknown>, unknown>,
 ): ISnippetsState => {
   const { type, payload, meta } = action;
 

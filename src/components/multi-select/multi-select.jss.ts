@@ -1,6 +1,5 @@
-import { FormControl, InputLabel } from '@mui/material';
+import { Checkbox, FormControl, InputLabel } from '@mui/material';
 
-import Checkbox from '@mui/material/Checkbox/Checkbox';
 import { styled } from '@mui/material/styles';
 
 export const MultiSelectFormContainer = styled(FormControl)(({ theme }) => ({

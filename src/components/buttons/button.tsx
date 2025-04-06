@@ -7,7 +7,6 @@ interface IMuiButtonProps {
   text: string;
   variant?: TButtonVariants;
   onClick?: () => void;
-  // eslint-disable-next-line @typescript-eslint/ban-types
   icon?: ReactElement;
   iconPlace?: IconPlace;
   type?: 'submit' | 'button' | 'reset';
