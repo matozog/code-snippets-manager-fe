@@ -37,7 +37,7 @@ const CustomCodeEditor: FC<ICodeEditorProps> = forwardRef<HTMLTextAreaElement, I
         }}
       />
     );
-  }
+  },
 );
 
 export default CustomCodeEditor;

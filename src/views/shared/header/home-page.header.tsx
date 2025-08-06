@@ -10,9 +10,9 @@ import {
   StyledLogo,
 } from './home-page.header.jss';
 import { ChangeEvent, useMemo, useState } from 'react';
+import { useMediaQuery, useTheme } from '@mui/material';
 import { IRootState, useAppDispatch } from 'src/store/config/store';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useMediaQuery, useTheme } from '@mui/material';
 
 import BurgerMenu from './modules/burger-menu/burger-menu';
 import SearchBox from 'src/components/search-box/search-box';
@@ -72,6 +72,7 @@ const HomePageHeader = () => {
 
     return (
       <>
+        {/*<FormControlLabel control={<MUISwitch defaultChecked />} label="" />*/}
         {MenuItemsList.map((item) => (
           <MenuActionButton key={item.label} onClick={item.action}>
             {item.icon}

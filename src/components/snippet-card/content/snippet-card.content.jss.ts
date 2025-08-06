@@ -2,6 +2,7 @@ import { Box, Typography } from '@mui/material';
 
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import EditIcon from '@mui/icons-material/Edit';
+import { Delete } from '@mui/icons-material';
 import { styled } from '@mui/material/styles';
 
 export const SnippetCardContainer = styled(Box)(({ theme }) => ({
@@ -71,6 +72,13 @@ export const CopySnippetButton = styled(ContentCopyIcon)(() => ({
   },
 }));
 
+export const RemoveSnippetButton = styled(Delete)(() => ({
+  height: '100%',
+  '&:hover': {
+    cursor: 'pointer',
+  },
+}));
+
 export const SnippetTitle = styled(Typography)(({ theme }) => ({
   marginBottom: theme.spacing(1),
   whiteSpace: 'nowrap',
@@ -95,7 +103,7 @@ export const SnippetContentOverflow = styled(Box)(() => ({
   alignItems: 'flex-end',
   justifyContent: 'center',
   background: 'linear-gradient(transparent 20%,#FFF 75%)',
-  zIndex: 1300,
+  zIndex: 1200,
 }));
 
 export const SnippetCode = styled(Box)(() => ({

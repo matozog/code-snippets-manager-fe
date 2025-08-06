@@ -4,10 +4,10 @@ import { FC } from 'react';
 
 interface IDatepicker {
   label: string;
-  onChange: (newValue: any) => void;
-  value: Dayjs | null;
-  maxDate?: Dayjs | null;
-  minDate?: Dayjs | null;
+  onChange: (newValue: Dayjs | null) => void;
+  value: Dayjs | undefined;
+  maxDate?: Dayjs | undefined;
+  minDate?: Dayjs | undefined;
 }
 
 const Datepicker: FC<IDatepicker> = ({ label, value, onChange, maxDate, minDate }) => {
