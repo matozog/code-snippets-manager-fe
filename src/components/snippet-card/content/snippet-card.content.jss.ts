@@ -2,7 +2,7 @@ import { Box, Typography } from '@mui/material';
 
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import EditIcon from '@mui/icons-material/Edit';
-import RemoveCircle from '@mui/icons-material/RemoveCircle';
+import { Delete } from '@mui/icons-material';
 import { styled } from '@mui/material/styles';
 
 export const SnippetCardContainer = styled(Box)(({ theme }) => ({
@@ -72,7 +72,7 @@ export const CopySnippetButton = styled(ContentCopyIcon)(() => ({
   },
 }));
 
-export const RemoveSnippetButton = styled(RemoveCircle)(() => ({
+export const RemoveSnippetButton = styled(Delete)(() => ({
   height: '100%',
   '&:hover': {
     cursor: 'pointer',

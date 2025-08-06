@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 import * as commonDuck from 'src/store/reducers/common';
 import * as filtersDuck from 'src/store/reducers/filters';
 import * as snippetDuck from 'src/store/reducers/snippets';
@@ -13,7 +11,6 @@ import { HomePageContainer } from './home-page.jss';
 import { ICodeSnippet } from 'src/types/models';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import ModalDialog from 'src/components/modal-dialog/modal-dialog';
-import MuiBackdrop from 'src/components/backdrop/mui-backdrop';
 import QuestionModal from 'src/components/modal-dialog/question-modal/question-modal';
 import SnippetCardContent from 'src/components/snippet-card/content/snippet-card.content';
 import SnippetModal from 'src/components/modal-dialog/snippet-modal/snippet-modal';
@@ -35,8 +32,6 @@ const HomePage = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
-  const isLoading = useAppSelector((root: IRootState) => root.snippetsData.isLoading);
-
   const handleOnScroll = () => {
     setIsScrollMoved((scrollContainerRef.current as HTMLElement).scrollTop !== 0);
   };
@@ -54,7 +49,7 @@ const HomePage = () => {
   const handleOnClickCopySnippet = (content: string) => {
     navigator.clipboard.writeText(content);
     dispatch(
-      commonDuck.operations.setNotifyProperties({ isOpen: true, message: 'Coppied to clipboard!', type: 'success' })
+      commonDuck.operations.setNotifyProperties({ isOpen: true, message: 'Coppied to clipboard!', type: 'success' }),
     );
   };
 
@@ -126,7 +121,6 @@ const HomePage = () => {
         isOpen={removeSnippetModalStatus.isOpen}
         handleClose={handleCloseQuestionModal}
       />
-      <MuiBackdrop isOpen={isLoading} />
     </>
   );
 };

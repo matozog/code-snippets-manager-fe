@@ -11,9 +11,12 @@ import MuiSnackbar from './components/snackbar/snackbar';
 import { ThemeProvider } from '@mui/material/styles';
 import { appTheme } from './themes/app.theme';
 import { useEffect } from 'react';
+import MuiBackdrop from './components/backdrop/mui-backdrop';
 
 function App() {
   const notifyProperties = useAppSelector((state: IRootState) => state.common.notifyProps);
+  const isLoading = useAppSelector((root: IRootState) => root.snippetsData.isLoading);
+
   const { isOpen, message, type } = notifyProperties;
 
   const dispatch = useAppDispatch();
@@ -37,6 +40,7 @@ function App() {
           <HomePageHeader />
           <AppRoutes />
         </HashRouter>
+        <MuiBackdrop isOpen={isLoading} />
       </LocalizationProvider>
     </ThemeProvider>
   );
