@@ -45,8 +45,10 @@ const OptionsButton: FC<IOptionsButtonProps> = ({ menuItemList }) => {
         anchorEl={anchorEl}
         open={isOpen}
         onClose={handleClose}
-        MenuListProps={{
-          'aria-labelledby': 'basic-button',
+        slotProps={{
+          list: {
+            'aria-labelledby': 'basic-button',
+          },
         }}
       >
         {menuItemList.map((item) => (

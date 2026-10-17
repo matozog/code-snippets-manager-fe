@@ -1,7 +1,7 @@
 import * as snippetsDuck from 'src/store/reducers/snippets';
 
 import { IRootState, useAppDispatch } from 'src/store/config/store';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router';
 
 import { ICodeSnippet } from 'src/types/models';
 import SnippetPage from '../snippet-page/snippet-page';

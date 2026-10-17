@@ -39,14 +39,14 @@ export const filterSnippets = (
   favourite: boolean,
 ): Array<ICodeSnippet> =>
   snippets.filter((snippet) => {
-    const { programmingLanguage, type, addedFrom, addedDate, isFavourite } = snippet;
+    const { programmingLanguage, type, addedFrom, addedDate, favorite } = snippet;
 
     return (
       existInArray(programmingLanguage, programmingLanguages) &&
       existInArray(type, types) &&
       existInArray(addedFrom, creationPlaces) &&
       isBetweenDates(addedDate, addedBefore, addedAfter) &&
-      (favourite ? isFavourite : true)
+      (favourite ? favorite : true)
     );
   });
 

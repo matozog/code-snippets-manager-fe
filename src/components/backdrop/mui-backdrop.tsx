@@ -16,7 +16,7 @@ const MuiBackdrop: FC<IMuiBackdropProps> = ({ isOpen }) => {
 
     if (isOpen) {
       interval = setInterval(() => {
-        setDelay((prevState) => ++prevState);
+        setDelay((prevState) => prevState + 1);
       }, 1000);
     }
 
@@ -32,7 +32,7 @@ const MuiBackdrop: FC<IMuiBackdropProps> = ({ isOpen }) => {
     >
       <CircularProgress color="inherit" />
       {delay > MAX_WAITING_TIME_TO_MESSAGE && (
-        <Typography mt={1} variant="h6" sx={{ maxWidth: '50%' }} align="center">
+        <Typography variant="h6" sx={{ mt: 1, maxWidth: '50%' }} align="center">
           If this is your first time launching the app and it's taking a while, it means the service is just starting
           up. This will take about a minute. <br /> Thank you for your patience.
         </Typography>

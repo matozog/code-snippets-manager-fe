@@ -9,10 +9,10 @@ import {
   NewSnippetIcon,
   StyledLogo,
 } from './home-page.header.jss';
-import { ChangeEvent, useMemo, useState } from 'react';
+import { ChangeEvent, JSX, useMemo, useState } from 'react';
 import { useMediaQuery, useTheme } from '@mui/material';
 import { IRootState, useAppDispatch } from 'src/store/config/store';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router';
 
 import BurgerMenu from './modules/burger-menu/burger-menu';
 import SearchBox from 'src/components/search-box/search-box';

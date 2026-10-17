@@ -28,7 +28,7 @@ const SnippetAttributes = <K extends FormikValues>({ formikProps }: ISnippetAttr
   const [newTag, setNewTag] = useState('');
 
   const { handleChange, handleBlur, values, setFieldValue } = formikProps || {};
-  const { name, programmingLanguage, addedFrom, type, description, tags, isFavourite } =
+  const { name, programmingLanguage, addedFrom, type, description, tags, favorite } =
     (values as unknown as ICodeSnippet) || {};
 
   const handleClickAddNewTag = () => {
@@ -56,7 +56,7 @@ const SnippetAttributes = <K extends FormikValues>({ formikProps }: ISnippetAttr
           <Input label="Creation place" id="addedFrom" value={addedFrom} onChange={handleChange} />
           <TextArea placeholder="Description" id="description" value={description} onChange={handleChange} />
           <FormControlLabel
-            control={<Switch id="isFavourite" value={isFavourite} onChange={handleChange} />}
+            control={<Switch id="favorite" checked={favorite} onChange={handleChange} />}
             label="Favourite:"
           />
         </SnippetAttributesContainer>

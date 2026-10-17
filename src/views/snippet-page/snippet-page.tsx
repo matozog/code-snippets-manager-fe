@@ -9,7 +9,7 @@ import MuiButton from 'src/components/buttons/button';
 import SnippetAttributes from './modules/snippet-attributes/snippet-attributes';
 import SnippetContent from './modules/snippet-content/snippet-content';
 import { useForm } from 'src/hooks/useForm';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 
 const validationSchema = yup.object({
   name: yup.string().required('Name is required.'),

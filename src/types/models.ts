@@ -3,7 +3,7 @@ export interface ICodeSnippet {
   name: string;
   description: string;
   content: string;
-  isFavourite: boolean;
+  favorite: boolean;
   programmingLanguage: string | null;
   type: string;
   addedFrom: string;
@@ -16,7 +16,7 @@ export const defaultCodeSnippet: ICodeSnippet = {
   name: '',
   description: '',
   content: '',
-  isFavourite: false,
+  favorite: false,
   programmingLanguage: null,
   type: '',
   addedFrom: '',

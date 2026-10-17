@@ -29,7 +29,7 @@ import MuiChip from 'src/components/chip/chip';
 import OptionsButton from 'src/components/buttons/options-button/options-button';
 import ReadMoreButton from 'src/components/buttons/read-more/read-more';
 import { useIsOverflow } from 'src/hooks/useOverflow';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 
 interface ISnippetCardContentProps {
   codeSnippet: ICodeSnippet | null;
@@ -48,8 +48,8 @@ const SnippetCardContent: FC<ISnippetCardContentProps> = ({
   onClickCopySnippet,
   onClickRemoveSnippet,
 }) => {
-  const contentRef: MutableRefObject<HTMLTextAreaElement | null | undefined> = useRef();
-  const tagsRef: MutableRefObject<HTMLDivElement | undefined> = useRef();
+  const contentRef: MutableRefObject<HTMLTextAreaElement | null | undefined> = useRef(undefined);
+  const tagsRef: MutableRefObject<HTMLDivElement | undefined> = useRef(undefined);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const isLowResolution = useMediaQuery(theme.breakpoints.down(400));

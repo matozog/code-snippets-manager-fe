@@ -4,7 +4,7 @@ import { IRootState, useAppDispatch, useAppSelector } from './store/config/store
 
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import AppRoutes from './app.routes';
-import { HashRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router';
 import HomePageHeader from './views/shared/header/home-page.header';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import MuiSnackbar from './components/snackbar/snackbar';

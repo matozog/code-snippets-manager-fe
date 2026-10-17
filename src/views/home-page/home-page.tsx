@@ -25,7 +25,7 @@ const HomePage = () => {
   }>({ isOpen: false, idSnippetToRemove: null });
   const [selectedSnippet, setSelectedSnippet] = useState<ICodeSnippet | null>(null);
   const [isScrollMoved, setIsScrollMoved] = useState<boolean>(false);
-  const scrollContainerRef = useRef<HTMLElement>();
+  const scrollContainerRef = useRef<HTMLElement>(undefined);
   const snippets = useAppSelector((root: IRootState) => root.snippetsData.snippets);
 
   const dispatch = useAppDispatch();

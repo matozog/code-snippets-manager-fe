@@ -4,7 +4,7 @@ import { ICodeSnippet, defaultCodeSnippet } from 'src/types/models';
 
 import SnippetPage from '../snippet-page/snippet-page';
 import { useAppDispatch } from 'src/store/config/store';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 
 const NewSnippet = () => {
   const dispatch = useAppDispatch();

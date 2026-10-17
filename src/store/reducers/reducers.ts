@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from '@reduxjs/toolkit';
 import common from './common/reducer';
 import snippetsData from './snippets/reducer';
 import snippetsFilters from './filters/reducer';

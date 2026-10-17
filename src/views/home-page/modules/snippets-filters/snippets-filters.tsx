@@ -85,7 +85,7 @@ const SnippetsFilters: FC<ISnippetsFiltersProps> = ({ scrollContainerRef }) => {
 
   const handleOnClearFiltersAction = () => dispatch(filtersDuck.operations.clearFilters());
 
-  const ref = useRef<HTMLElement>();
+  const ref = useRef<HTMLElement>(undefined);
 
   const handleClickOnExpandFilters = () => {
     if (areFiltersCollapsed) {

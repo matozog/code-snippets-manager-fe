@@ -1,7 +1,7 @@
 import { MutableRefObject, RefObject, useLayoutEffect, useState } from 'react';
 
 export const useIsOverflow = <T extends HTMLElement>(
-  ref?: MutableRefObject<T | undefined> | RefObject<T | undefined>
+  ref?: MutableRefObject<T | null | undefined> | RefObject<T | null | undefined>
 ): { isOverflow: boolean; isHorizontalOverflow: boolean } => {
   const [isOverflow, setIsOverflow] = useState(false);
   const [isHorizontalOverflow, setIsHorizontalOverflow] = useState(false);

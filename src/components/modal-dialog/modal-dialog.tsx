@@ -1,4 +1,4 @@
-import { CSSProperties, FC } from 'react';
+import { CSSProperties, FC, JSX } from 'react';
 
 import { Modal } from '@mui/material';
 import { ModalContainer } from './modal-dialog.jss';
