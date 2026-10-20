@@ -56,3 +56,6 @@ Your app is ready to be deployed!
 ### `npm run deploy`
 
 This script builds the application and deploys it on GitHub Pages. It automatically pushes the `build` directory to the `gh-pages` branch.
+
+Usually it is not needed: every push (merge) to `master` runs the CI workflow (`.github/workflows/ci.yml`), which lints,
+tests and builds the app and then publishes the same bundle to `gh-pages`. Pull requests and `develop` are only tested.
