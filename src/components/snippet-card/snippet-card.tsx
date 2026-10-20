@@ -8,7 +8,7 @@ interface ISnippetCardProps {
   codeSnippet: ICodeSnippet;
   onClickReadMoreButton?: (codeSnippet: ICodeSnippet | null) => void;
   onClickCopySnippet?: (content: string) => void;
-  onClickRemoveSnippet?: (snippetId?: string) => void;
+  onClickRemoveSnippet?: (snippetId?: number) => void;
 }
 
 const SnippetCard: FC<ISnippetCardProps> = ({

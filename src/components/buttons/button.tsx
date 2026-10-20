@@ -11,11 +11,12 @@ interface IMuiButtonProps {
   iconPlace?: IconPlace;
   type?: 'submit' | 'button' | 'reset';
   id?: string;
+  disabled?: boolean;
 }
 
 export type TButtonVariants = 'text' | 'outlined' | 'contained';
 
-const MuiButton: FC<IMuiButtonProps> = ({ text, variant, onClick, icon, iconPlace, type }) => {
+const MuiButton: FC<IMuiButtonProps> = ({ text, variant, onClick, icon, iconPlace, type, disabled }) => {
   const renderButtonContentWithIcon = () => {
     if (!icon) return text;
 
@@ -35,7 +36,7 @@ const MuiButton: FC<IMuiButtonProps> = ({ text, variant, onClick, icon, iconPlac
   };
 
   return (
-    <MuiButtonComp variant={variant} onClick={onClick} type={type}>
+    <MuiButtonComp variant={variant} onClick={onClick} type={type} disabled={disabled}>
       {renderButtonContentWithIcon()}
     </MuiButtonComp>
   );

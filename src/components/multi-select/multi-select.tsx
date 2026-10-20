@@ -2,7 +2,7 @@ import { ListItemText, MenuItem, OutlinedInput } from '@mui/material';
 import { MultiSelectFormContainer, StyledCheckbox, StyledInputLabel } from './multi-select.jss';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 
-import { FC } from 'react';
+import { FC, useId } from 'react';
 
 interface IMultiSelectProps {
   options: Array<string>;
@@ -12,14 +12,15 @@ interface IMultiSelectProps {
 }
 
 const MultiSelect: FC<IMultiSelectProps> = ({ onChange, selectedOptions, options = [], label }) => {
+  const labelId = useId();
+
   return (
     <MultiSelectFormContainer>
-      <StyledInputLabel style={{ minWidth: 'max-content' }} id="demo-simple-select-helper-label">
+      <StyledInputLabel style={{ minWidth: 'max-content' }} id={labelId}>
         {label}
       </StyledInputLabel>
       <Select
-        labelId="demo-multiple-checkbox-label"
-        id="demo-multiple-checkbox"
+        labelId={labelId}
         multiple
         value={selectedOptions}
         onChange={onChange}

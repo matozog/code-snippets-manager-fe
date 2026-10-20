@@ -1,7 +1,7 @@
-import { Box } from '@mui/material';
+import { Avatar, Box } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import NoteAddIcon from '@mui/icons-material/NoteAdd';
-import PersonIcon from '@mui/icons-material/Person';
+import LogoutIcon from '@mui/icons-material/Logout';
 import { styled } from '@mui/material/styles';
 
 export const HeaderContainer = styled(Box)(({ theme }) => ({
@@ -28,8 +28,15 @@ export const ActionContainer = styled(Box)(({ theme }) => ({
   marginLeft: theme.spacing(1),
 }));
 
-export const AccountIconDetails = styled(PersonIcon)(() => ({
+export const SignOutIcon = styled(LogoutIcon)(() => ({
   cursor: 'pointer',
+}));
+
+export const UserAvatar = styled(Avatar)(({ theme }) => ({
+  width: 32,
+  height: 32,
+  alignSelf: 'center',
+  marginRight: theme.spacing(1),
 }));
 
 export const NewSnippetIcon = styled(NoteAddIcon)(() => ({

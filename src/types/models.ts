@@ -1,13 +1,14 @@
 export interface ICodeSnippet {
-  idSnippet?: string;
+  idSnippet?: number;
   name: string;
   description: string;
   content: string;
-  isFavourite: boolean;
+  favorite: boolean;
   programmingLanguage: string | null;
   type: string;
   addedFrom: string;
-  addedDate: string;
+  // assigned by the server (ISO date-time)
+  addedDate?: string;
   tags: Array<ITag>;
   img?: string;
 }
@@ -16,16 +17,15 @@ export const defaultCodeSnippet: ICodeSnippet = {
   name: '',
   description: '',
   content: '',
-  isFavourite: false,
+  favorite: false,
   programmingLanguage: null,
   type: '',
   addedFrom: '',
-  addedDate: '',
   tags: [],
 };
 
 export interface ITag {
-  id?: string;
+  idTag?: number;
   name: string;
   addedDate?: string;
 }

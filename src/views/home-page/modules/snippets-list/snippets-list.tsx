@@ -1,26 +1,18 @@
-import * as snippetDuck from 'src/store/reducers/snippets';
-
-import { FC, useState } from 'react';
-import { IRootState, useAppSelector } from 'src/store/config/store';
-
-import { Box } from '@mui/material';
+import { FC } from 'react';
 import { ICodeSnippet } from 'src/types/models';
-import ModalDialog from 'src/components/modal-dialog/modal-dialog';
 import SnippetCard from 'src/components/snippet-card/snippet-card';
 import { SnippetsListContainer } from './snippet-list.jss';
+import { selectVisibleSnippets } from 'src/store/reducers/snippets/selectors';
+import { useAppSelector } from 'src/store/config/store';
 
 interface ISnippetListProps {
   onClickSnippet?: (codeSnippet: ICodeSnippet | null) => void;
   onClickCopySnippet?: (content: string) => void;
-  onClickRemoveSnippet?: (snippetId?: string) => void;
+  onClickRemoveSnippet?: (snippetId?: number) => void;
 }
 
 const SnippetsList: FC<ISnippetListProps> = ({ onClickSnippet, onClickRemoveSnippet, onClickCopySnippet }) => {
-  const [isOpenModal, setOpenModal] = useState(false);
-
-  const snippetsList = useAppSelector((root: IRootState) =>
-    snippetDuck.selectors.selectSortedAndFilteredSnippets({ ...root.snippetsData, ...root.snippetsFilters }),
-  );
+  const snippetsList = useAppSelector(selectVisibleSnippets);
 
   return (
     <SnippetsListContainer>
@@ -33,7 +25,6 @@ const SnippetsList: FC<ISnippetListProps> = ({ onClickSnippet, onClickRemoveSnip
           onClickRemoveSnippet={onClickRemoveSnippet}
         />
       ))}
-      <ModalDialog isOpen={isOpenModal} content={<Box>Are you sure?</Box>} handleClose={() => setOpenModal(false)} />
     </SnippetsListContainer>
   );
 };

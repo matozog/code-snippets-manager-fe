@@ -1,75 +1,65 @@
-import dayjs, { Dayjs } from 'dayjs';
+import dayjs from 'dayjs';
 
 import { ICodeSnippet } from 'src/types/models';
+import { IFiltersState } from '../filters/filters.slice';
 import { SortByType } from '../filters/constants';
-import isBetween from 'dayjs/plugin/isBetween';
 
-dayjs.extend(isBetween);
+export type ISnippetFilterCriteria = Pick<
+  IFiltersState,
+  'keyword' | 'programmingLanguage' | 'type' | 'creationPlace' | 'addedAfter' | 'addedBefore' | 'favourite'
+>;
 
-const existInArray = (value: string | null, array: string[]) =>
-  value && value !== '' && array.length > 0 ? array.includes(value) : true;
+// an empty selection means "any value"
+const matchesSelection = (value: string | null | undefined, selected: string[]) =>
+  selected.length === 0 || (!!value && selected.includes(value));
 
-const isBetweenDates = (value: string, minDate: Dayjs | undefined, maxDate: Dayjs | undefined) => {
-  const hasMin = minDate != null;
-  const hasMax = maxDate != null;
+// bounds are inclusive and compared with day precision
+const isWithinDates = (value: string | undefined, addedAfter: string | null, addedBefore: string | null) => {
+  if (!addedAfter && !addedBefore) return true;
+  if (!value) return false;
 
   const date = dayjs(value);
-
-  if (hasMin && hasMax) {
-    return date.isBetween(minDate, maxDate, 'day', '[]');
-  } else if (hasMin) {
-    return date.isAfter(minDate) || date.isSame(minDate, 'day');
-  } else if (hasMax) {
-    return date.isBefore(maxDate) || date.isSame(maxDate, 'day');
-  }
-
-  return true;
+  return (!addedAfter || !date.isBefore(addedAfter, 'day')) && (!addedBefore || !date.isAfter(addedBefore, 'day'));
 };
 
-export const filterByKeyword = (snippets: Array<ICodeSnippet>, keyword: string): Array<ICodeSnippet> =>
-  snippets.filter((snippet) => snippet.name.toLocaleLowerCase().includes(keyword.toLocaleLowerCase()));
+export const filterSnippets = (snippets: ICodeSnippet[], criteria: ISnippetFilterCriteria): ICodeSnippet[] => {
+  const keyword = criteria.keyword.trim().toLocaleLowerCase();
 
-export const filterSnippets = (
-  snippets: Array<ICodeSnippet>,
-  programmingLanguages: Array<string>,
-  types: Array<string>,
-  creationPlaces: Array<string>,
-  addedAfter: Dayjs | undefined,
-  addedBefore: Dayjs | undefined,
-  favourite: boolean,
-): Array<ICodeSnippet> =>
-  snippets.filter((snippet) => {
-    const { programmingLanguage, type, addedFrom, addedDate, isFavourite } = snippet;
-
-    return (
-      existInArray(programmingLanguage, programmingLanguages) &&
-      existInArray(type, types) &&
-      existInArray(addedFrom, creationPlaces) &&
-      isBetweenDates(addedDate, addedBefore, addedAfter) &&
-      (favourite ? isFavourite : true)
-    );
-  });
-
-const comparatorFunc = (
-  firstElement: string | boolean | null,
-  secondElement: string | boolean | null,
-  sortAsc: boolean,
-): number => {
-  if (firstElement === null || secondElement === null) return -1;
-
-  if (typeof firstElement === 'string' && typeof secondElement === 'string') {
-    return sortAsc ? firstElement.localeCompare(secondElement) : secondElement.localeCompare(firstElement);
-  } else if (typeof firstElement === 'boolean')
-    return sortAsc ? Number(secondElement) - Number(firstElement) : Number(firstElement) - Number(secondElement);
-
-  return 0;
+  return snippets.filter(
+    (snippet) =>
+      snippet.name.toLocaleLowerCase().includes(keyword) &&
+      matchesSelection(snippet.programmingLanguage, criteria.programmingLanguage) &&
+      matchesSelection(snippet.type, criteria.type) &&
+      matchesSelection(snippet.addedFrom, criteria.creationPlace) &&
+      isWithinDates(snippet.addedDate, criteria.addedAfter, criteria.addedBefore) &&
+      (!criteria.favourite || snippet.favorite),
+  );
 };
 
-export const sortRecords = (
-  snippets: Array<ICodeSnippet>,
-  sortBy: SortByType,
-  sortAsc: boolean,
-): Array<ICodeSnippet> => {
+const isEmpty = (value: unknown) => value === null || value === undefined || value === '';
+
+export const sortRecords = (snippets: ICodeSnippet[], sortBy: SortByType, sortAsc: boolean): ICodeSnippet[] => {
   if (sortBy === '') return snippets;
-  return [...snippets.sort((a: ICodeSnippet, b: ICodeSnippet) => comparatorFunc(a[sortBy], b[sortBy], sortAsc))];
+
+  const direction = sortAsc ? 1 : -1;
+
+  return [...snippets].sort((a, b) => {
+    const first = a[sortBy];
+    const second = b[sortBy];
+
+    // snippets without a value always go last, regardless of the direction
+    if (isEmpty(first) || isEmpty(second)) return Number(isEmpty(first)) - Number(isEmpty(second));
+    // ascending order puts favourites first
+    if (typeof first === 'boolean' && typeof second === 'boolean') return direction * (Number(second) - Number(first));
+    return direction * String(first).localeCompare(String(second));
+  });
 };
+
+const uniqueValues = (values: Array<string | null | undefined>): string[] =>
+  Array.from(new Set(values.filter((value): value is string => !!value)));
+
+export const getFilterOptions = (snippets: ICodeSnippet[]) => ({
+  creationPlaces: uniqueValues(snippets.map((snippet) => snippet.addedFrom)),
+  programmingLanguages: uniqueValues(snippets.map((snippet) => snippet.programmingLanguage)),
+  types: uniqueValues(snippets.map((snippet) => snippet.type)),
+});

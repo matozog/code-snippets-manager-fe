@@ -5,9 +5,9 @@ import { FC } from 'react';
 interface IDatepicker {
   label: string;
   onChange: (newValue: Dayjs | null) => void;
-  value: Dayjs | undefined;
-  maxDate?: Dayjs | undefined;
-  minDate?: Dayjs | undefined;
+  value: Dayjs | null;
+  maxDate?: Dayjs | null;
+  minDate?: Dayjs | null;
 }
 
 const Datepicker: FC<IDatepicker> = ({ label, value, onChange, maxDate, minDate }) => {
@@ -15,10 +15,10 @@ const Datepicker: FC<IDatepicker> = ({ label, value, onChange, maxDate, minDate 
     <CustomDatepicker
       label={label}
       format="DD/MM/YYYY"
-      onChange={onChange}
+      onChange={(newValue) => onChange(newValue as Dayjs | null)}
       value={value}
-      maxDate={maxDate}
-      minDate={minDate}
+      maxDate={maxDate ?? undefined}
+      minDate={minDate ?? undefined}
     />
   );
 };

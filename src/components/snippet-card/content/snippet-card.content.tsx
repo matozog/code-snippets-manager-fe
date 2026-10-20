@@ -1,5 +1,5 @@
 import { Box, useMediaQuery, useTheme } from '@mui/material';
-import { CSSProperties, FC, MutableRefObject, useRef } from 'react';
+import { CSSProperties, FC, useRef } from 'react';
 import {
   CopySnippetButton,
   EditIconButton,
@@ -29,7 +29,7 @@ import MuiChip from 'src/components/chip/chip';
 import OptionsButton from 'src/components/buttons/options-button/options-button';
 import ReadMoreButton from 'src/components/buttons/read-more/read-more';
 import { useIsOverflow } from 'src/hooks/useOverflow';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 
 interface ISnippetCardContentProps {
   codeSnippet: ICodeSnippet | null;
@@ -37,7 +37,7 @@ interface ISnippetCardContentProps {
   withReadmore?: boolean;
   editorStyles?: CSSProperties;
   onClickCopySnippet?: (content: string) => void;
-  onClickRemoveSnippet?: (snippetId?: string) => void;
+  onClickRemoveSnippet?: (snippetId?: number) => void;
 }
 
 const SnippetCardContent: FC<ISnippetCardContentProps> = ({
@@ -48,8 +48,8 @@ const SnippetCardContent: FC<ISnippetCardContentProps> = ({
   onClickCopySnippet,
   onClickRemoveSnippet,
 }) => {
-  const contentRef: MutableRefObject<HTMLTextAreaElement | null | undefined> = useRef();
-  const tagsRef: MutableRefObject<HTMLDivElement | undefined> = useRef();
+  const contentRef = useRef<HTMLTextAreaElement>(null);
+  const tagsRef = useRef<HTMLDivElement>(null);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const isLowResolution = useMediaQuery(theme.breakpoints.down(400));
@@ -91,7 +91,6 @@ const SnippetCardContent: FC<ISnippetCardContentProps> = ({
               <SnippetTitle>{name}</SnippetTitle>
               {isMobile ? (
                 <OptionsButton
-                  isOpen
                   menuItemList={[
                     { text: 'Copy', onClick: () => onClickCopySnippet?.(content || '') },
                     { text: 'Edit', onClick: () => navigate(`edit-snippet/${idSnippet}`) },

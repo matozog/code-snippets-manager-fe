@@ -1,7 +1,7 @@
 import { DropdownFormContainer, StyledInputLabel } from './dropdown.jss';
 import { MenuItem, Select, SelectChangeEvent } from '@mui/material';
 
-import { FC } from 'react';
+import { FC, useId } from 'react';
 
 interface IDropdownProps {
   handleOnChange: (value: SelectChangeEvent<string>) => void;
@@ -10,17 +10,13 @@ interface IDropdownProps {
   dropdownOptions: Map<string, string>;
 }
 
-const Dropdown: FC<IDropdownProps> = ({ handleOnChange, value, label, dropdownOptions = [] }) => {
+const Dropdown: FC<IDropdownProps> = ({ handleOnChange, value, label, dropdownOptions }) => {
+  const labelId = useId();
+
   return (
     <DropdownFormContainer>
-      <StyledInputLabel id="demo-simple-select-helper-label">{label}</StyledInputLabel>
-      <Select
-        labelId="demo-simple-select-helper-label"
-        id="demo-simple-select-helper"
-        value={value}
-        label={label}
-        onChange={handleOnChange}
-      >
+      <StyledInputLabel id={labelId}>{label}</StyledInputLabel>
+      <Select labelId={labelId} value={value} label={label} onChange={handleOnChange}>
         <MenuItem value="">
           <em>None</em>
         </MenuItem>

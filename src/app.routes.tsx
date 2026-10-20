@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router';
 
 import EditSnippet from './views/edit-snippet-page/edit-snippet';
 import HomePage from './views/home-page/home-page';

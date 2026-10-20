@@ -18,12 +18,14 @@ const SearchBox: FC<ISearchBoxProps> = ({ id, placeholder, value, onChange }) =>
       placeholder={placeholder}
       value={value}
       onChange={onChange}
-      InputProps={{
-        startAdornment: (
-          <InputAdornment position="start">
-            <StyledSearchIcon />
-          </InputAdornment>
-        ),
+      slotProps={{
+        input: {
+          startAdornment: (
+            <InputAdornment position="start">
+              <StyledSearchIcon />
+            </InputAdornment>
+          ),
+        },
       }}
     />
   );
