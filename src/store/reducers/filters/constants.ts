@@ -8,3 +8,6 @@ export const SORT_BY_OPTIONS: Map<SortByType, string> = new Map([
   ['addedFrom', 'Added from'],
   ['addedDate', 'Added date'],
 ]);
+
+// format of dates kept in the filters state
+export const FILTER_DATE_FORMAT = 'YYYY-MM-DD';

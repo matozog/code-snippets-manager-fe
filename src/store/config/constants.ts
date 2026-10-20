@@ -1,14 +1,5 @@
-export const SUCCESS = (type: string) => `${type}_FULFILLED`;
-export const REQUEST = (type: string) => `${type}_REQUEST`;
-export const FAILURE = (type: string) => `${type}_FAILURE`;
+// configured per mode in .env.development / .env.production, override locally in .env.local
+export const API_URL = import.meta.env.VITE_API_URL;
 
-export const API_URL = import.meta.env.DEV
-  ? 'http://localhost:8090'
-  : `https://code-snippets-manager-service.onrender.com`;
-
-export interface ActionType<T, P, Z, W> {
-  readonly type: T;
-  readonly payload?: P;
-  readonly meta?: Z;
-  readonly error?: W;
-}
+// OAuth client id from Google Cloud Console; public, the API accepts only ID tokens issued for it
+export const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID ?? '';

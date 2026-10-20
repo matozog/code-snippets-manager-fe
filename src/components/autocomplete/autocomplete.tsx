@@ -6,19 +6,22 @@ import { StyledTextField } from '../input/input.jss';
 interface IMuiAutocompleteProps {
   value: string | null;
   onChange?: (event: SyntheticEvent<Element, Event>, newValue: string | null) => void;
+  onBlur?: () => void;
   options: string[];
   id?: string;
   label: string;
+  error?: string;
 }
 
-const MuiAutocomplete: FC<IMuiAutocompleteProps> = ({ value, onChange, options, id, label }) => {
+const MuiAutocomplete: FC<IMuiAutocompleteProps> = ({ value, onChange, onBlur, options, id, label, error }) => {
   return (
     <Autocomplete
       value={value}
       onChange={onChange}
+      onBlur={onBlur}
       id={id}
       options={options}
-      renderInput={(params) => <StyledTextField {...params} label={label} />}
+      renderInput={(params) => <StyledTextField {...params} label={label} error={!!error} helperText={error} />}
     />
   );
 };

@@ -1,4 +1,4 @@
-import { FC, MouseEvent, useState } from 'react';
+import { FC, MouseEvent, useId, useState } from 'react';
 import { MoreInfoButton, StyledMenu } from './options-button.jss';
 
 import { MenuItem } from '@mui/material';
@@ -10,12 +10,13 @@ export interface IMenuItem {
 }
 
 interface IOptionsButtonProps {
-  isOpen: boolean;
   menuItemList: IMenuItem[];
 }
 
 const OptionsButton: FC<IOptionsButtonProps> = ({ menuItemList }) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const buttonId = useId();
+  const menuId = useId();
   const isOpen = Boolean(anchorEl);
   const handleClick = (event: MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -32,8 +33,9 @@ const OptionsButton: FC<IOptionsButtonProps> = ({ menuItemList }) => {
   return (
     <>
       <MoreInfoButton
-        id="basic-button"
-        aria-controls={isOpen ? 'basic-menu' : undefined}
+        id={buttonId}
+        aria-label="More options"
+        aria-controls={isOpen ? menuId : undefined}
         aria-haspopup="true"
         aria-expanded={isOpen ? 'true' : undefined}
         onClick={handleClick}
@@ -41,13 +43,13 @@ const OptionsButton: FC<IOptionsButtonProps> = ({ menuItemList }) => {
         <MoreVertIcon />
       </MoreInfoButton>
       <StyledMenu
-        id="basic-menu"
+        id={menuId}
         anchorEl={anchorEl}
         open={isOpen}
         onClose={handleClose}
         slotProps={{
           list: {
-            'aria-labelledby': 'basic-button',
+            'aria-labelledby': buttonId,
           },
         }}
       >

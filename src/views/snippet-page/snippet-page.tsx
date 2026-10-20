@@ -11,10 +11,16 @@ import SnippetContent from './modules/snippet-content/snippet-content';
 import { useForm } from 'src/hooks/useForm';
 import { useNavigate } from 'react-router';
 
+// max lengths mirror the limits enforced by the API
 const validationSchema = yup.object({
-  name: yup.string().required('Name is required.'),
-  programmingLanguage: yup.string().required('Programming language is required.'),
-  tags: yup.array().required('Minimum one tag is required.'),
+  name: yup.string().trim().required('Name is required.').max(255, 'Name can have at most 255 characters.'),
+  programmingLanguage: yup
+    .string()
+    .required('Programming language is required.')
+    .max(255, 'Programming language can have at most 255 characters.'),
+  type: yup.string().max(255, 'Type can have at most 255 characters.'),
+  addedFrom: yup.string().max(255, 'Creation place can have at most 255 characters.'),
+  tags: yup.array().min(1, 'Minimum one tag is required.'),
 });
 
 interface ISnippetPageProps {

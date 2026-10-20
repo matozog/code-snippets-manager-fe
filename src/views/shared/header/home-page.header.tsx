@@ -1,22 +1,22 @@
-import * as filtersDuck from 'src/store/reducers/filters';
-
 import {
-  AccountIconDetails,
   ActionContainer,
   HeaderContainer,
   MenuActionButton,
   MenuButton,
   NewSnippetIcon,
+  SignOutIcon,
   StyledLogo,
+  UserAvatar,
 } from './home-page.header.jss';
 import { ChangeEvent, JSX, useMemo, useState } from 'react';
 import { useMediaQuery, useTheme } from '@mui/material';
-import { IRootState, useAppDispatch } from 'src/store/config/store';
+import { useAppDispatch, useAppSelector } from 'src/store/config/store';
 import { useLocation, useNavigate } from 'react-router';
 
 import BurgerMenu from './modules/burger-menu/burger-menu';
 import SearchBox from 'src/components/search-box/search-box';
-import { useSelector } from 'react-redux';
+import { changeFilters } from 'src/store/reducers/filters/filters.slice';
+import { signOut } from 'src/store/reducers/auth/auth.thunks';
 
 export interface IMenuItemProps {
   label: string;
@@ -30,22 +30,24 @@ const HomePageHeader = () => {
   const location = useLocation();
   const theme = useTheme();
   const isMobileScreen = useMediaQuery(theme.breakpoints.down('sm'));
-  const inputValue = useSelector((root: IRootState) => root.snippetsFilters.keyword);
+  const inputValue = useAppSelector((state) => state.snippetsFilters.keyword);
+  const user = useAppSelector((state) => state.auth.user);
 
   const isNewSnippetPage = useMemo(() => location.pathname.includes('new-snippet'), [location]);
 
   const dispatch = useAppDispatch();
 
   const handleChangeSearchboxValue = (event: ChangeEvent<HTMLInputElement>) =>
-    dispatch(filtersDuck.operations.changeFiltersField('keyword', event.target.value));
+    dispatch(changeFilters({ keyword: event.target.value }));
 
   const handleOnClickNewSnippetIcon = () => {
     navigate('new-snippet');
     setBurgerMenuOpen(false);
   };
 
-  const handleOnClickAccountButton = () => {
+  const handleOnClickSignOut = () => {
     setBurgerMenuOpen(false);
+    dispatch(signOut());
   };
 
   const handleToggleBurgerMenu = () => setBurgerMenuOpen(!isBurgerMenuOpen);
@@ -58,13 +60,13 @@ const HomePageHeader = () => {
       icon: <NewSnippetIcon />,
       action: handleOnClickNewSnippetIcon,
     },
-    { label: 'Account', icon: <AccountIconDetails />, action: handleOnClickAccountButton },
+    { label: 'Sign out', icon: <SignOutIcon />, action: handleOnClickSignOut },
   ];
 
   const actionsRenderer = () => {
     if (isMobileScreen) {
       return (
-        <MenuActionButton onClick={handleToggleBurgerMenu}>
+        <MenuActionButton onClick={handleToggleBurgerMenu} role="button" aria-label="Menu">
           <MenuButton />
         </MenuActionButton>
       );
@@ -73,8 +75,23 @@ const HomePageHeader = () => {
     return (
       <>
         {/*<FormControlLabel control={<MUISwitch defaultChecked />} label="" />*/}
+        {user && (
+          <UserAvatar
+            src={user.picture}
+            alt={user.name}
+            title={`${user.name} (${user.email})`}
+            // without a picture MUI renders the initial in a plain element, so it needs its own accessible name
+            {...(!user.picture && { role: 'img', 'aria-label': user.name })}
+          />
+        )}
         {MenuItemsList.map((item) => (
-          <MenuActionButton key={item.label} onClick={item.action}>
+          <MenuActionButton
+            key={item.label}
+            onClick={item.action}
+            role="button"
+            aria-label={item.label}
+            title={item.label}
+          >
             {item.icon}
           </MenuActionButton>
         ))}

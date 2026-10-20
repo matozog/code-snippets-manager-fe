@@ -1,20 +1,19 @@
-import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+import { ThunkAction, UnknownAction, configureStore } from '@reduxjs/toolkit';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { configureStore } from '@reduxjs/toolkit';
 import rootReducer from 'src/store/reducers/reducers';
 
-const store = configureStore({
-  reducer: rootReducer,
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: false,
-    }),
-});
+export const createAppStore = (preloadedState?: Partial<IRootState>) =>
+  configureStore({ reducer: rootReducer, preloadedState });
 
-export type IRootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
+const store = createAppStore();
 
-export const useAppDispatch: () => AppDispatch = useDispatch;
-export const useAppSelector: TypedUseSelectorHook<IRootState> = useSelector;
+export type IRootState = ReturnType<typeof rootReducer>;
+export type AppStore = ReturnType<typeof createAppStore>;
+export type AppDispatch = AppStore['dispatch'];
+export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, IRootState, unknown, UnknownAction>;
+
+export const useAppDispatch = useDispatch.withTypes<AppDispatch>();
+export const useAppSelector = useSelector.withTypes<IRootState>();
 
 export default store;

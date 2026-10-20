@@ -1,5 +1,5 @@
 import { Box, useMediaQuery, useTheme } from '@mui/material';
-import { CSSProperties, FC, MutableRefObject, useRef } from 'react';
+import { CSSProperties, FC, useRef } from 'react';
 import {
   CopySnippetButton,
   EditIconButton,
@@ -37,7 +37,7 @@ interface ISnippetCardContentProps {
   withReadmore?: boolean;
   editorStyles?: CSSProperties;
   onClickCopySnippet?: (content: string) => void;
-  onClickRemoveSnippet?: (snippetId?: string) => void;
+  onClickRemoveSnippet?: (snippetId?: number) => void;
 }
 
 const SnippetCardContent: FC<ISnippetCardContentProps> = ({
@@ -48,8 +48,8 @@ const SnippetCardContent: FC<ISnippetCardContentProps> = ({
   onClickCopySnippet,
   onClickRemoveSnippet,
 }) => {
-  const contentRef: MutableRefObject<HTMLTextAreaElement | null | undefined> = useRef(undefined);
-  const tagsRef: MutableRefObject<HTMLDivElement | undefined> = useRef(undefined);
+  const contentRef = useRef<HTMLTextAreaElement>(null);
+  const tagsRef = useRef<HTMLDivElement>(null);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const isLowResolution = useMediaQuery(theme.breakpoints.down(400));
@@ -91,7 +91,6 @@ const SnippetCardContent: FC<ISnippetCardContentProps> = ({
               <SnippetTitle>{name}</SnippetTitle>
               {isMobile ? (
                 <OptionsButton
-                  isOpen
                   menuItemList={[
                     { text: 'Copy', onClick: () => onClickCopySnippet?.(content || '') },
                     { text: 'Edit', onClick: () => navigate(`edit-snippet/${idSnippet}`) },

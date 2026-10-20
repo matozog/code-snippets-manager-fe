@@ -1,7 +1,7 @@
-import { MutableRefObject, RefObject, useLayoutEffect, useState } from 'react';
+import { RefObject, useLayoutEffect, useState } from 'react';
 
 export const useIsOverflow = <T extends HTMLElement>(
-  ref?: MutableRefObject<T | null | undefined> | RefObject<T | null | undefined>
+  ref?: RefObject<T | null>,
 ): { isOverflow: boolean; isHorizontalOverflow: boolean } => {
   const [isOverflow, setIsOverflow] = useState(false);
   const [isHorizontalOverflow, setIsHorizontalOverflow] = useState(false);
@@ -17,12 +17,16 @@ export const useIsOverflow = <T extends HTMLElement>(
       setIsHorizontalOverflow(!!hasHorizontalOverflow);
     };
 
-    if (current) {
-      if ('ResizeObserver' in window) {
-        new ResizeObserver(trigger).observe(current);
-      }
-      trigger();
-    }
+    if (!current) return;
+
+    trigger();
+
+    if (!('ResizeObserver' in window)) return;
+
+    const resizeObserver = new ResizeObserver(trigger);
+    resizeObserver.observe(current);
+
+    return () => resizeObserver.disconnect();
   }, [ref]);
 
   return { isOverflow, isHorizontalOverflow };
